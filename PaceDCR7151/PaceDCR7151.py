@@ -2315,7 +2315,7 @@ def runTest():
                                 video_height = NOS_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)
                                 if (video_height != "1080"):
                                     TEST_CREATION_API.write_log_to_file("STB Resolution: " + video_height)
-                                    TEST_CREATION_API.send_ir_rc_command("[RESOLUTION_SETTINGS]")
+                                    TEST_CREATION_API.send_ir_rc_command("[RESOLUTION_SETTINGS_SLOW]")
                                     if (video_height == "720"):
                                         if not (NOS_API.grab_picture("Resolution_720_Confirmation")):
                                             TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
@@ -6705,7 +6705,7 @@ def runTest():
                                         
                                         if not(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                             TEST_CREATION_API.send_ir_rc_command("[EXIT_ZON_BOX]")
-                                            TEST_CREATION_API.send_ir_rc_command("[Factory_Reset]")
+                                            TEST_CREATION_API.send_ir_rc_command("[Factory_Reset_Slow]")
                                             if not(NOS_API.grab_picture("Factory_Reset_1")):
                                                 TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
                                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
