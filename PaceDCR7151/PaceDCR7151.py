@@ -2272,7 +2272,8 @@ def runTest():
                                         return
                                     comparassion_result = NOS_API.compare_pictures("Resolution_Confirmation_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
                                     comparassion_result_1 = NOS_API.compare_pictures("Resolution_Confirmation_1_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
-                                    if (comparassion_result >= 80 or comparassion_result_1 >= 80):
+                                    comparassion_result_2 = NOS_API.compare_pictures("Resolution_Confirmation_Dict_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
+                                    if (comparassion_result >= 80 or comparassion_result_1 >= 80 or comparassion_result_2 >= 80):
                                         TEST_CREATION_API.send_ir_rc_command("[Confirm_720]")
                                         TEST_CREATION_API.send_ir_rc_command("[ReNavigate_Resolution_Settings]")
                                 TEST_CREATION_API.send_ir_rc_command("[SET_1080i_FROM_MENU_new]")
@@ -2364,7 +2365,8 @@ def runTest():
                                             return
                                         comparassion_result = NOS_API.compare_pictures("Resolution_Confirmation_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
                                         comparassion_result_1 = NOS_API.compare_pictures("Resolution_Confirmation_1_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
-                                        if (comparassion_result >= 80 or comparassion_result_1 >= 80):
+                                        comparassion_result_2 = NOS_API.compare_pictures("Resolution_Confirmation_Dict_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
+                                        if (comparassion_result >= 80 or comparassion_result_1 >= 80 or comparassion_result_2 >= 80):
                                             TEST_CREATION_API.send_ir_rc_command("[Confirm_720]")
                                             TEST_CREATION_API.send_ir_rc_command("[ReNavigate_Resolution_Settings]")
                                     TEST_CREATION_API.send_ir_rc_command("[SET_1080i_FROM_MENU]")
@@ -2629,7 +2631,7 @@ def runTest():
                                 time.sleep(1)
                                 
                             TEST_CREATION_API.send_ir_rc_command("[Check_Upgrade]")
-                            result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old", "sw_version_black_ref"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]", "[SW_VERSION_SCREEN]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres])
+                            result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old", "sw_version_black_ref", "Sw_Version_Black_Dict_ref", "Sw_Version_Dict_ref", "Sw_Version_Dict_2_ref"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]", "[SW_VERSION_SCREEN]", "[Sw_Version_Menu_Dict]", "[Sw_Version_Menu_Dict]", "[Sw_Version_Menu_Dict]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres])
                             if(result == -2):
                                 TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -2715,7 +2717,7 @@ def runTest():
                                 TEST_CREATION_API.send_ir_rc_command("[CH_1]")
                                 time.sleep(5)
                                 TEST_CREATION_API.send_ir_rc_command("[Check_Upgrade_Scnd]") 
-                                result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old", "sw_version_black_ref"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]", "[SW_VERSION_SCREEN]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres])
+                                result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old", "sw_version_black_ref", "Sw_Version_Black_Dict_ref", "Sw_Version_Dict_ref", "Sw_Version_Dict_2_ref"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]", "[SW_VERSION_SCREEN]", "[Sw_Version_Menu_Dict]", "[Sw_Version_Menu_Dict]", "[Sw_Version_Menu_Dict]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres])
                                 if(result == -2):
                                     TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                                     NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -2795,6 +2797,11 @@ def runTest():
                                             report_file)                           
                                                 
                                     return
+                            
+                            if (result == 3 or result == 4 or result == 5):
+                                Dict = True
+                            else:
+                                Dict = False                                
                             if not(NOS_API.grab_picture("STB_Version")):
                                 TEST_CREATION_API.write_log_to_file("HDMI NOK")
                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
@@ -2832,16 +2839,29 @@ def runTest():
                                         report_file)
                                 
                                 return
-                            ## Get IRIS version from menu
-                            iris_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[IRIS_VERSION]", "[OCR_FILTER]")
-                            NOS_API.test_cases_results_info.iris_version = iris_version
-                            TEST_CREATION_API.write_log_to_file("IRIS version: " + iris_version)
-                            NOS_API.update_test_slot_comment("IRIS version: " + iris_version)
-                            ## Get SoftWare version from menu
-                            sw_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[SOFTWARE_VERSION]", "[OCR_FILTER]", "sw_version")
-                            TEST_CREATION_API.write_log_to_file("The extracted sc version is: " + sw_version)
-                            NOS_API.update_test_slot_comment("SW version: " + NOS_API.test_cases_results_info.firmware_version)
-                            NOS_API.test_cases_results_info.firmware_version = str(sw_version)
+                            
+                            if (Dict):
+                                ## Get IRIS version from menu
+                                iris_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[IRIS_VERSION_DICT]", "[OCR_FILTER]")
+                                NOS_API.test_cases_results_info.iris_version = iris_version
+                                TEST_CREATION_API.write_log_to_file("IRIS version: " + iris_version)
+                                NOS_API.update_test_slot_comment("IRIS version: " + iris_version)
+                                ## Get SoftWare version from menu
+                                sw_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[SOFTWARE_VERSION_DICT]", "[OCR_FILTER]", "sw_version")
+                                TEST_CREATION_API.write_log_to_file("The extracted sc version is: " + sw_version)
+                                NOS_API.update_test_slot_comment("SW version: " + NOS_API.test_cases_results_info.firmware_version)
+                                NOS_API.test_cases_results_info.firmware_version = str(sw_version)
+                            else:
+                                ## Get IRIS version from menu
+                                iris_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[IRIS_VERSION]", "[OCR_FILTER]")
+                                NOS_API.test_cases_results_info.iris_version = iris_version
+                                TEST_CREATION_API.write_log_to_file("IRIS version: " + iris_version)
+                                NOS_API.update_test_slot_comment("IRIS version: " + iris_version)
+                                ## Get SoftWare version from menu
+                                sw_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[SOFTWARE_VERSION]", "[OCR_FILTER]", "sw_version")
+                                TEST_CREATION_API.write_log_to_file("The extracted sc version is: " + sw_version)
+                                NOS_API.update_test_slot_comment("SW version: " + NOS_API.test_cases_results_info.firmware_version)
+                                NOS_API.test_cases_results_info.firmware_version = str(sw_version)
                             
                             if not(sw_version == sw_version_prod and iris_version == iris_version_prod):
                                 if (upgrade == 0 and NOS_API.Upgrade_State == 0):
@@ -3019,7 +3039,10 @@ def runTest():
                     
                             ## OCR macros
                             #macro_snr =  "[SNR_CHANNEL_BOOT_UP_STATE]"
-                            macro_snr =  "[SNR_CHANNEL_BOOT_UP_STATE_1]" # if write: POWER: xdbmV
+                            if(Dict):
+                                macro_snr =  "[SNR_CHANNEL_BOOT_UP_STATE_DICT]"
+                            else:
+                                macro_snr =  "[SNR_CHANNEL_BOOT_UP_STATE_1]" # if write: POWER: xdbmV
                             macro_ber =  "[BER_CHANNEL_BOOT_UP_STATE]"
                             
                             TEST_CREATION_API.send_ir_rc_command("[CH_1]")
@@ -3338,16 +3361,28 @@ def runTest():
                                 NOS_API.test_cases_results_info.ber = "-"
                                 
                             if (NOS_API.test_cases_results_info.channel_boot_up_state):
-                                try:
-                                    frequencia = TEST_CREATION_API.OCR_recognize_text("signal_value", "[FREQUENCIA]", "[OCR_FILTER]")
-                                    NOS_API.test_cases_results_info.freq = str(frequencia)
-                                    modulation = TEST_CREATION_API.OCR_recognize_text("signal_value", "[MODULATION]", "[OCR_FILTER]")
-                                    NOS_API.test_cases_results_info.modulation = str(modulation)
-                                    NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
-                                    NOS_API.update_test_slot_comment("Modulation: " + modulation)
-                                except Exception as error:
-                                    ## Set test result to INCONCLUSIVE
-                                    TEST_CREATION_API.write_log_to_file(str(error))
+                                if(Dict):
+                                    try:
+                                        frequencia = TEST_CREATION_API.OCR_recognize_text("signal_value", "[FREQUENCIA_DICT]", "[OCR_FILTER]")
+                                        NOS_API.test_cases_results_info.freq = str(frequencia)
+                                        modulation = TEST_CREATION_API.OCR_recognize_text("signal_value", "[MODULATION_DICT]", "[OCR_FILTER]")
+                                        NOS_API.test_cases_results_info.modulation = str(modulation)
+                                        NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
+                                        NOS_API.update_test_slot_comment("Modulation: " + modulation)
+                                    except Exception as error:
+                                        ## Set test result to INCONCLUSIVE
+                                        TEST_CREATION_API.write_log_to_file(str(error))
+                                else:
+                                    try:
+                                        frequencia = TEST_CREATION_API.OCR_recognize_text("signal_value", "[FREQUENCIA]", "[OCR_FILTER]")
+                                        NOS_API.test_cases_results_info.freq = str(frequencia)
+                                        modulation = TEST_CREATION_API.OCR_recognize_text("signal_value", "[MODULATION]", "[OCR_FILTER]")
+                                        NOS_API.test_cases_results_info.modulation = str(modulation)
+                                        NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
+                                        NOS_API.update_test_slot_comment("Modulation: " + modulation)
+                                    except Exception as error:
+                                        ## Set test result to INCONCLUSIVE
+                                        TEST_CREATION_API.write_log_to_file(str(error))
                             
                             ## Check if snr value higher than threshold
                             if (snr_value > SNR_VALUE_THRESHOLD_LOW and snr_value < SNR_VALUE_THRESHOLD_HIGH):
@@ -3624,7 +3659,7 @@ def runTest():
                                             time.sleep(3)
                                             
                                             TEST_CREATION_API.send_ir_rc_command("[Check_Upgrade_Inst]")
-                                            result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]"], [NOS_API.thres, NOS_API.thres])
+                                            result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old", "Sw_Version_Dict_ref", "Sw_Version_Dict_2_ref"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]", "[Sw_Version_Menu_Dict]", "[Sw_Version_Menu_Dict]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres])
                                             if(result == -2):
                                                 TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -3672,7 +3707,7 @@ def runTest():
                                                 TEST_CREATION_API.send_ir_rc_command("[CH_1]")
                                                 time.sleep(3)
                                                 TEST_CREATION_API.send_ir_rc_command("[Check_Upgrade_Scnd]") 
-                                                result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]"], [NOS_API.thres, NOS_API.thres])
+                                                result = NOS_API.wait_for_multiple_pictures(["sw_version_ref", "sw_version_ref_old", "Sw_Version_Dict_ref", "Sw_Version_Dict_2_ref"], 5, ["[SW_VERSION_SCREEN]", "[SW_VERSION_SCREEN_Two]", "[Sw_Version_Menu_Dict]", "[Sw_Version_Menu_Dict]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres])
                                                 if(result == -2):
                                                     TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                                                     NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -3752,6 +3787,10 @@ def runTest():
                                                             report_file)                           
                                                                 
                                                     return
+                                            if (result == 2 or result == 3):
+                                                Dict = True
+                                            else:
+                                                Dict = False
                                             if not(NOS_API.grab_picture("STB_Version")):
                                                 TEST_CREATION_API.write_log_to_file("HDMI NOK")
                                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
@@ -3790,17 +3829,29 @@ def runTest():
                                                         report_file)
                                                 
                                                 return
-                                            ## Get IRIS version from menu
-                                            iris_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[IRIS_VERSION]", "[OCR_FILTER]")
-                                            NOS_API.test_cases_results_info.iris_version = iris_version
-                                            TEST_CREATION_API.write_log_to_file("IRIS version: " + iris_version)
-                                            NOS_API.update_test_slot_comment("IRIS version: " + iris_version)
-                                            ## Get SoftWare version from menu
-                                            sw_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[SOFTWARE_VERSION]", "[OCR_FILTER]", "sw_version")
-                                            TEST_CREATION_API.write_log_to_file("The extracted sc version is: " + sw_version)
-                                            NOS_API.update_test_slot_comment("SW version: " + NOS_API.test_cases_results_info.firmware_version)
-                                            NOS_API.test_cases_results_info.firmware_version = str(sw_version)
-                                            
+                                            if (Dict):
+                                                ## Get IRIS version from menu
+                                                iris_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[IRIS_VERSION_DICT]", "[OCR_FILTER]")
+                                                NOS_API.test_cases_results_info.iris_version = iris_version
+                                                TEST_CREATION_API.write_log_to_file("IRIS version: " + iris_version)
+                                                NOS_API.update_test_slot_comment("IRIS version: " + iris_version)
+                                                ## Get SoftWare version from menu
+                                                sw_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[SOFTWARE_VERSION_DICT]", "[OCR_FILTER]", "sw_version")
+                                                TEST_CREATION_API.write_log_to_file("The extracted sc version is: " + sw_version)
+                                                NOS_API.update_test_slot_comment("SW version: " + NOS_API.test_cases_results_info.firmware_version)
+                                                NOS_API.test_cases_results_info.firmware_version = str(sw_version)
+                                            else:
+                                                ## Get IRIS version from menu
+                                                iris_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[IRIS_VERSION]", "[OCR_FILTER]")
+                                                NOS_API.test_cases_results_info.iris_version = iris_version
+                                                TEST_CREATION_API.write_log_to_file("IRIS version: " + iris_version)
+                                                NOS_API.update_test_slot_comment("IRIS version: " + iris_version)
+                                                ## Get SoftWare version from menu
+                                                sw_version = TEST_CREATION_API.OCR_recognize_text("STB_Version", "[SOFTWARE_VERSION]", "[OCR_FILTER]", "sw_version")
+                                                TEST_CREATION_API.write_log_to_file("The extracted sc version is: " + sw_version)
+                                                NOS_API.update_test_slot_comment("SW version: " + NOS_API.test_cases_results_info.firmware_version)
+                                                NOS_API.test_cases_results_info.firmware_version = str(sw_version)
+                                                
                                             if not(sw_version == sw_version_prod and iris_version == iris_version_prod):
                                                 if (upgrade == 0 and NOS_API.Upgrade_State == 0):
                                                     upgrade = upgrade + 1
@@ -3976,16 +4027,28 @@ def runTest():
                                             TEST_CREATION_API.send_ir_rc_command("[CH_1]")
                                             time.sleep(2)
                                             if (NOS_API.grab_picture("freq_mod")):
-                                                try:
-                                                    frequencia = TEST_CREATION_API.OCR_recognize_text("freq_mod", "[FREQUENCIA]", "[OCR_FILTER]")
-                                                    NOS_API.test_cases_results_info.freq = str(frequencia)
-                                                    modulation = TEST_CREATION_API.OCR_recognize_text("freq_mod", "[MODULATION]", "[OCR_FILTER]")
-                                                    NOS_API.test_cases_results_info.modulation = str(modulation)
-                                                    NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
-                                                    NOS_API.update_test_slot_comment("Modulation: " + modulation)
-                                                except Exception as error:
-                                                    ## Set test result to INCONCLUSIVE
-                                                    TEST_CREATION_API.write_log_to_file(str(error))
+                                                if (Dict):
+                                                    try:
+                                                        frequencia = TEST_CREATION_API.OCR_recognize_text("freq_mod", "[FREQUENCIA_DICT]", "[OCR_FILTER]")
+                                                        NOS_API.test_cases_results_info.freq = str(frequencia)
+                                                        modulation = TEST_CREATION_API.OCR_recognize_text("freq_mod", "[MODULATION_DICT]", "[OCR_FILTER]")
+                                                        NOS_API.test_cases_results_info.modulation = str(modulation)
+                                                        NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
+                                                        NOS_API.update_test_slot_comment("Modulation: " + modulation)
+                                                    except Exception as error:
+                                                        ## Set test result to INCONCLUSIVE
+                                                        TEST_CREATION_API.write_log_to_file(str(error))
+                                                else:
+                                                    try:
+                                                        frequencia = TEST_CREATION_API.OCR_recognize_text("freq_mod", "[FREQUENCIA]", "[OCR_FILTER]")
+                                                        NOS_API.test_cases_results_info.freq = str(frequencia)
+                                                        modulation = TEST_CREATION_API.OCR_recognize_text("freq_mod", "[MODULATION]", "[OCR_FILTER]")
+                                                        NOS_API.test_cases_results_info.modulation = str(modulation)
+                                                        NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
+                                                        NOS_API.update_test_slot_comment("Modulation: " + modulation)
+                                                    except Exception as error:
+                                                        ## Set test result to INCONCLUSIVE
+                                                        TEST_CREATION_API.write_log_to_file(str(error))
                                             else:
                                                 TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
                                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
@@ -4204,7 +4267,7 @@ def runTest():
                 if (NOS_API.is_signal_present_on_video_source()):
                      
                     TEST_CREATION_API.send_ir_rc_command("[Change_FTTH_First]")
-                    result = NOS_API.wait_for_multiple_pictures(["Conectividade_Black_ref", "Conectividade_ref"], 10, ["[Conectividade]", "[Conectividade]"], [70, 70])
+                    result = NOS_API.wait_for_multiple_pictures(["Conectividade_Black_ref", "Conectividade_ref", "Conectividade_Dict_ref"], 10, ["[Conectividade]", "[Conectividade]", "[Conectividade_Dict]"], [70, 70, 70])
                     if(result == -2):
                         TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4247,9 +4310,9 @@ def runTest():
 
                         return
                     if(result == -1):
-                        TEST_CREATION_API.send_ir_rc_command("[Big_Back]")
+                        TEST_CREATION_API.send_ir_rc_command("[EXIT_ZON_BOX]")
                         TEST_CREATION_API.send_ir_rc_command("[Change_FTTH_Scnd]")
-                        result = NOS_API.wait_for_multiple_pictures(["Conectividade_Black_ref", "Conectividade_ref"], 10, ["[Conectividade]", "[Conectividade]"], [70, 70])
+                        result = NOS_API.wait_for_multiple_pictures(["Conectividade_Black_ref", "Conectividade_ref", "Conectividade_Dict_ref"], 10, ["[Conectividade]", "[Conectividade]", "[Conectividade_Dict]"], [70, 70, 70])
                         if(result == -2):
                             TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                             NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4339,7 +4402,7 @@ def runTest():
                     TEST_CREATION_API.send_ir_rc_command("[OK]")
                     
                     #MAC_SCREEN
-                    result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]"], [NOS_API.thres, NOS_API.thres])
+                    result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1", "Mac_Screen_Dict_ref"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN_DICT]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres])
                     if(result == -2):
                         TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4386,7 +4449,7 @@ def runTest():
                         TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_MODEM_DOCSIS]")
                         TEST_CREATION_API.send_ir_rc_command("[OK]")
                         
-                        result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]"], [NOS_API.thres, NOS_API.thres])
+                        result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1", "Mac_Screen_Dict_ref"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN_DICT]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres])
                         if(result == -2):
                             TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                             NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4470,25 +4533,38 @@ def runTest():
                             return
 
                     if (NOS_API.grab_picture("mac")):
-                 
-                        try:          
-                            ## Get MAC address from menu
-                            #mac_number = TEST_CREATION_API.OCR_recognize_text("zon_box_data", "[MAC]", "[OCR_FILTER]")
-                            mac_number = NOS_API.fix_mac_stb_pace(NOS_API.remove_whitespaces(TEST_CREATION_API.OCR_recognize_text("mac", "[MAC]", "[OCR_FILTER]")))
-                            NOS_API.test_cases_results_info.mac_number = mac_number
-                            TEST_CREATION_API.write_log_to_file("Mac number: " + mac_number)
-                            NOS_API.update_test_slot_comment("Mac number: " + mac_number)
-                            
-                        except Exception as error:
-                            ## Set test result to INCONCLUSIVE
-                            TEST_CREATION_API.write_log_to_file(str(error))
-                            mac_number = ""
+                        if (Dict):
+                            try:          
+                                ## Get MAC address from menu
+                                #mac_number = TEST_CREATION_API.OCR_recognize_text("zon_box_data", "[MAC]", "[OCR_FILTER]")
+                                mac_number = NOS_API.fix_mac_stb_pace(NOS_API.remove_whitespaces(TEST_CREATION_API.OCR_recognize_text("mac", "[MAC_DICT]", "[OCR_FILTER]")))
+                                NOS_API.test_cases_results_info.mac_number = mac_number
+                                TEST_CREATION_API.write_log_to_file("Mac number: " + mac_number)
+                                NOS_API.update_test_slot_comment("Mac number: " + mac_number)
+                                
+                            except Exception as error:
+                                ## Set test result to INCONCLUSIVE
+                                TEST_CREATION_API.write_log_to_file(str(error))
+                                mac_number = ""
+                        else:
+                            try:          
+                                ## Get MAC address from menu
+                                #mac_number = TEST_CREATION_API.OCR_recognize_text("zon_box_data", "[MAC]", "[OCR_FILTER]")
+                                mac_number = NOS_API.fix_mac_stb_pace(NOS_API.remove_whitespaces(TEST_CREATION_API.OCR_recognize_text("mac", "[MAC]", "[OCR_FILTER]")))
+                                NOS_API.test_cases_results_info.mac_number = mac_number
+                                TEST_CREATION_API.write_log_to_file("Mac number: " + mac_number)
+                                NOS_API.update_test_slot_comment("Mac number: " + mac_number)
+                                
+                            except Exception as error:
+                                ## Set test result to INCONCLUSIVE
+                                TEST_CREATION_API.write_log_to_file(str(error))
+                                mac_number = ""
                     
                         ## Navigate to the Resumo menu
                         TEST_CREATION_API.send_ir_rc_command("[RESUMO_FROM_MODEM_DOCSIS]")
                         TEST_CREATION_API.send_ir_rc_command("[UP_4]")      
                         
-                        result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1"], 10, ["[RESUMO]", "[RESUMO]"], [70, 70])
+                        result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1", "Resumo_Dict_ref"], 10, ["[RESUMO]", "[RESUMO]", "[RESUMO_DICT]"], [70, 70, 70])
                         if(result == -2):
                             TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                             NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4535,7 +4611,7 @@ def runTest():
                             TEST_CREATION_API.send_ir_rc_command("[RESUMO]")
                             TEST_CREATION_API.send_ir_rc_command("[UP_4]") 
                             
-                            result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1"], 10, ["[RESUMO]", "[RESUMO]"], [70, 70])
+                            result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1", "Resumo_Dict_ref"], 10, ["[RESUMO]", "[RESUMO]", "[RESUMO_DICT]"], [70, 70, 70])
                             if(result == -2):
                                 TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4726,7 +4802,7 @@ def runTest():
 
                                                     return
                                                 start_time = int(time.time())
-                                                while not (TEST_CREATION_API.compare_pictures("sc_info_ref1", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref2", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref3", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref4", "Right_Place", "[CAS_ID_RP]", NOS_API.thres)):
+                                                while not (TEST_CREATION_API.compare_pictures("sc_info_ref1", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref2", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref3", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref4", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("Sc_Info_Dict_ref", "Right_Place", "[CAS_ID_RP_DICT]", NOS_API.thres)):
                                                     ##Perform Down
                                                     TEST_CREATION_API.send_ir_rc_command("[Down]")
                                                     timeout = int(time.time()) - start_time
@@ -4872,7 +4948,7 @@ def runTest():
                                                     
                                                     TEST_CREATION_API.send_ir_rc_command("[REDO_SC]")
                                                     
-                                                    result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1"], 10, ["[RESUMO]", "[RESUMO]"], [70, 70])
+                                                    result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1", "Resumo_Dict_ref"], 10, ["[RESUMO]", "[RESUMO]", "[RESUMO_DICT]"], [70, 70, 70])
                                                     if(result == -2):
                                                         TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                                                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4919,7 +4995,7 @@ def runTest():
                                                         TEST_CREATION_API.send_ir_rc_command("[RESUMO]")
                                                         TEST_CREATION_API.send_ir_rc_command("[UP_4]") 
                                                         
-                                                        result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1"], 10, ["[RESUMO]", "[RESUMO]"], [70, 70])
+                                                        result = NOS_API.wait_for_multiple_pictures(["resumo_ref", "resumo_ref1", "Resumo_Dict_ref"], 10, ["[RESUMO]", "[RESUMO]", "[RESUMO_DICT]"], [70, 70, 70])
                                                         if(result == -2):
                                                             TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                                                             NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -5043,7 +5119,7 @@ def runTest():
             
                                                         return
                                                     start_time = int(time.time())
-                                                    while not (TEST_CREATION_API.compare_pictures("sc_info_ref1", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref2", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref3", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref4", "Right_Place", "[CAS_ID_RP]", NOS_API.thres)):
+                                                    while not (TEST_CREATION_API.compare_pictures("sc_info_ref1", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref2", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref3", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("sc_info_ref4", "Right_Place", "[CAS_ID_RP]", NOS_API.thres) or TEST_CREATION_API.compare_pictures("Sc_Info_Dict_ref", "Right_Place", "[CAS_ID_RP_DICT]", NOS_API.thres)):
                                                         ##Perform Down
                                                         TEST_CREATION_API.send_ir_rc_command("[Down]")
                                                         timeout = int(time.time()) - start_time
@@ -5349,7 +5425,7 @@ def runTest():
                 
                 pqm_analyse_check = True        
                 
-                SPDIF_Result = False
+                # SPDIF_Result = False
                 
                 test_result_SCART_video = False
                 SCART_Result = False
@@ -5492,8 +5568,8 @@ def runTest():
                 
                  ## Initialize grabber device
                 #NOS_API.initialize_grabber()
-                NOS_API.grabber_stop_video_source()
-                time.sleep(1)
+                # NOS_API.grabber_stop_video_source()
+                # time.sleep(1)
                 NOS_API.grabber_stop_audio_source()
                 time.sleep(1)
             
@@ -5501,12 +5577,21 @@ def runTest():
                 time.sleep(1)
                 TEST_CREATION_API.send_ir_rc_command("[CH_1]")
                 time.sleep(1)
-                
-                TEST_CREATION_API.grabber_start_audio_source(TEST_CREATION_API.AudioInterface.SPDIF_COAX)
-                time.sleep(1)
 
-                ## Record audio from digital output (SPDIF COAX)
-                TEST_CREATION_API.record_audio("SPDIF_COAX_audio", MAX_RECORD_AUDIO_TIME)
+                # try:
+                #     ## Perform grab picture
+                #     TEST_CREATION_API.grab_picture("Debug_SPDIF")
+                # except:
+                #     pass
+
+                NOS_API.grabber_stop_video_source()
+                time.sleep(3)
+                
+                # TEST_CREATION_API.grabber_start_audio_source(TEST_CREATION_API.AudioInterface.SPDIF_COAX)
+                # time.sleep(1)
+
+                # ## Record audio from digital output (SPDIF COAX)
+                # TEST_CREATION_API.record_audio("SPDIF_COAX_audio", MAX_RECORD_AUDIO_TIME)
 
                 #############Comparacao com referencia audio OK############################################
                 
@@ -5563,246 +5648,245 @@ def runTest():
                 #############Comparacao com referencia audio NOK############################################
                 
                 ## Compare recorded and expected audio and get result of comparison
-                audio_result1 = NOS_API.compare_audio("No_Both_ref", "SPDIF_COAX_audio")
+                # audio_result1 = NOS_API.compare_audio("No_Both_ref", "SPDIF_COAX_audio")
 
-                if not(audio_result1 >= TEST_CREATION_API.AUDIO_THRESHOLD):
+                # if not(audio_result1 >= TEST_CREATION_API.AUDIO_THRESHOLD):
 
-                    ## Check is audio present on channel
-                    if (TEST_CREATION_API.is_audio_present("SPDIF_COAX_audio")):
-                        SPDIF_Result = True
-                    else:
-                        TEST_CREATION_API.write_log_to_file("Audio is not present on SPDIF coaxial interface.")
-                        NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code \
-                                                            + "; Error message: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message)
-                        error_codes = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code
-                        error_messages = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message 
-                        NOS_API.set_error_message("SPDIF")
-                else:
-                    time.sleep(3)
+                #     ## Check is audio present on channel
+                #     if (TEST_CREATION_API.is_audio_present("SPDIF_COAX_audio")):
+                #         SPDIF_Result = True
+                #     else:
+                #         TEST_CREATION_API.write_log_to_file("Audio is not present on SPDIF coaxial interface.")
+                #         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code \
+                #                                             + "; Error message: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message)
+                #         error_codes = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code
+                #         error_messages = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message 
+                #         NOS_API.set_error_message("SPDIF")
+                # else:
+                #     time.sleep(3)
                     
-                    NOS_API.display_dialog("Confirme o cabo SPDIF e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
+                #     NOS_API.display_dialog("Confirme o cabo SPDIF e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
                     
-                    ## Record audio from digital output (SPDIF COAX)
-                    TEST_CREATION_API.record_audio("SPDIF_COAX_audio1", MAX_RECORD_AUDIO_TIME)
+                #     ## Record audio from digital output (SPDIF COAX)
+                #     TEST_CREATION_API.record_audio("SPDIF_COAX_audio1", MAX_RECORD_AUDIO_TIME)
                 
-                    ## Compare recorded and expected audio and get result of comparison
-                    audio_result1 = NOS_API.compare_audio("No_Both_ref", "SPDIF_COAX_audio1")
+                #     ## Compare recorded and expected audio and get result of comparison
+                #     audio_result1 = NOS_API.compare_audio("No_Both_ref", "SPDIF_COAX_audio1")
                 
-                    if not(audio_result1 >= TEST_CREATION_API.AUDIO_THRESHOLD):
+                #     if not(audio_result1 >= TEST_CREATION_API.AUDIO_THRESHOLD):
                 
-                        ## Check is audio present on channel
-                        if (TEST_CREATION_API.is_audio_present("SPDIF_COAX_audio1")):
-                            SPDIF_Result = True
-                        else:
-                            TEST_CREATION_API.write_log_to_file("Audio is not present on SPDIF coaxial interface.")
-                            NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code \
-                                                                    + "; Error message: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message)
-                            error_codes = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code
-                            error_messages = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message 
-                            NOS_API.set_error_message("SPDIF")
-                    else:           
-                        TEST_CREATION_API.write_log_to_file("Audio with RT-RK pattern is not reproduced correctly on SPDIF coaxial interface.")
-                        NOS_API.update_test_slot_comment("Error codes: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_code  \
-                                                                    + ";\n" + NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_code  \
-                                                                    + "; Error messages: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_message \
-                                                                    + ";\n" + NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_message)
-                        error_codes = NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_code
-                        error_messages = NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_message + " " +  NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_message
-                        NOS_API.set_error_message("SPDIF")
+                #         ## Check is audio present on channel
+                #         if (TEST_CREATION_API.is_audio_present("SPDIF_COAX_audio1")):
+                #             SPDIF_Result = True
+                #         else:
+                #             TEST_CREATION_API.write_log_to_file("Audio is not present on SPDIF coaxial interface.")
+                #             NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code \
+                #                                                     + "; Error message: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message)
+                #             error_codes = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_code
+                #             error_messages = NOS_API.test_cases_results_info.spdif_coaxial_signal_absence_error_message 
+                #             NOS_API.set_error_message("SPDIF")
+                #     else:           
+                #         TEST_CREATION_API.write_log_to_file("Audio with RT-RK pattern is not reproduced correctly on SPDIF coaxial interface.")
+                #         NOS_API.update_test_slot_comment("Error codes: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_code  \
+                #                                                     + ";\n" + NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_code  \
+                #                                                     + "; Error messages: " + NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_message \
+                #                                                     + ";\n" + NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_message)
+                #         error_codes = NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_code
+                #         error_messages = NOS_API.test_cases_results_info.spdif_coaxial_signal_discontinuities_error_message + " " +  NOS_API.test_cases_results_info.spdif_coaxial_signal_interference_error_message
+                #         NOS_API.set_error_message("SPDIF")
                         
     
             ################################################################################### SCART Test ###################################################################################################################
             
-                if(SPDIF_Result):
+                # if(SPDIF_Result):
                 
-                    NOS_API.grabber_stop_audio_source()
-                    time.sleep(1)
-                    
-                    ## Initialize input interfaces of DUT RT-AV101 device  
-                    NOS_API.reset_dut()
-                    #time.sleep(2)
+                #NOS_API.grabber_stop_audio_source()
+                #time.sleep(1)
+                
+                ## Initialize input interfaces of DUT RT-AV101 device  
+                NOS_API.reset_dut()
+                #time.sleep(2)
 
-                    ## Start grabber device with video on default video source
-                    NOS_API.grabber_start_video_source(TEST_CREATION_API.VideoInterface.CVBS2)
-                    #time.sleep(5)
-                    
-                    if not(NOS_API.is_signal_present_on_video_source()):
-                        NOS_API.display_dialog("Confirme o cabo SCART e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
-                    
-                    
-                    if (NOS_API.is_signal_present_on_video_source()):
+                ## Start grabber device with video on default video source
+                NOS_API.grabber_start_video_source(TEST_CREATION_API.VideoInterface.CVBS2)
+                #time.sleep(5)
+                
+                if not(NOS_API.is_signal_present_on_video_source()):
+                    NOS_API.display_dialog("Confirme o cabo SCART e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
+                
+                
+                if (NOS_API.is_signal_present_on_video_source()):
 
-                        ## Check if video is playing (check if video is not freezed)
-                        if (NOS_API.is_video_playing(TEST_CREATION_API.VideoInterface.CVBS2)):
-                            video_result = 0
-                            i = 0
-                            
-                            while(i < 3):
-                    
-                                try:
-                                    ## Perform grab picture
-                                    TEST_CREATION_API.grab_picture("SCART_video")
-                            
-                                    ## Compare grabbed and expected image and get result of comparison
-                                    video_result = NOS_API.compare_pictures("SCART_video_ref", "SCART_video", "[HALF_SCREEN_576p]")
-                                    video_result_1 = NOS_API.compare_pictures("SCART_video_4K_ref", "SCART_video", "[HALF_SCREEN_576p]")
-                            
-                                except:
-                                    i = i + 1
-                                    continue
-                            
-                                ## Check video analysis results and update comments
-                                if (video_result >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD or video_result_1 >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD):
-                                    ## Set test result to PASS
-                                    test_result_SCART_video = True
-                                    break
+                    ## Check if video is playing (check if video is not freezed)
+                    if (NOS_API.is_video_playing(TEST_CREATION_API.VideoInterface.CVBS2)):
+                        video_result = 0
+                        i = 0
+                        
+                        while(i < 3):
+                
+                            try:
+                                ## Perform grab picture
+                                TEST_CREATION_API.grab_picture("SCART_video")
+                        
+                                ## Compare grabbed and expected image and get result of comparison
+                                video_result = NOS_API.compare_pictures("SCART_video_ref", "SCART_video", "[HALF_SCREEN_576p]")
+                                video_result_1 = NOS_API.compare_pictures("SCART_video_4K_ref", "SCART_video", "[HALF_SCREEN_576p]")
+                        
+                            except:
                                 i = i + 1
-                            if (i >= 3):
-                                TEST_CREATION_API.write_log_to_file("Video with RT-RK pattern is not reproduced correctly on SCART interface.")
-                                NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_noise_error_code \
-                                                                    + "; Error message: " + NOS_API.test_cases_results_info.scart_noise_error_message \
-                                                                    + "; V: " + str(video_result))
-                                error_codes = NOS_API.test_cases_results_info.scart_noise_error_code
-                                error_messages = NOS_API.test_cases_results_info.scart_noise_error_message
-                                NOS_API.set_error_message("Video Scart")
-                        else:
-                            TEST_CREATION_API.write_log_to_file("Channel with RT-RK color bar pattern was not playing on SCART interface.")
-                            NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_image_freezing_error_code \
-                                                                    + "; Error message: " + NOS_API.test_cases_results_info.scart_image_freezing_error_message)
-                            error_codes = NOS_API.test_cases_results_info.scart_image_freezing_error_code
-                            error_messages = NOS_API.test_cases_results_info.scart_image_freezing_error_message
+                                continue
+                        
+                            ## Check video analysis results and update comments
+                            if (video_result >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD or video_result_1 >= NOS_API.DEFAULT_CVBS_VIDEO_THRESHOLD):
+                                ## Set test result to PASS
+                                test_result_SCART_video = True
+                                break
+                            i = i + 1
+                        if (i >= 3):
+                            TEST_CREATION_API.write_log_to_file("Video with RT-RK pattern is not reproduced correctly on SCART interface.")
+                            NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_noise_error_code \
+                                                                + "; Error message: " + NOS_API.test_cases_results_info.scart_noise_error_message \
+                                                                + "; V: " + str(video_result))
+                            error_codes = NOS_API.test_cases_results_info.scart_noise_error_code
+                            error_messages = NOS_API.test_cases_results_info.scart_noise_error_message
                             NOS_API.set_error_message("Video Scart")
                     else:
-                        TEST_CREATION_API.write_log_to_file("No video SCART.")
-                        NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_image_absence_error_code \
-                                                                + "; Error message: " + NOS_API.test_cases_results_info.scart_image_absence_error_message)
-                        error_codes = NOS_API.test_cases_results_info.scart_image_absence_error_code
-                        error_messages = NOS_API.test_cases_results_info.scart_image_absence_error_message
+                        TEST_CREATION_API.write_log_to_file("Channel with RT-RK color bar pattern was not playing on SCART interface.")
+                        NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_image_freezing_error_code \
+                                                                + "; Error message: " + NOS_API.test_cases_results_info.scart_image_freezing_error_message)
+                        error_codes = NOS_API.test_cases_results_info.scart_image_freezing_error_code
+                        error_messages = NOS_API.test_cases_results_info.scart_image_freezing_error_message
                         NOS_API.set_error_message("Video Scart")
-                        
-                        
-                        
-                    if(test_result_SCART_video):
+                else:
+                    TEST_CREATION_API.write_log_to_file("No video SCART.")
+                    NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_image_absence_error_code \
+                                                            + "; Error message: " + NOS_API.test_cases_results_info.scart_image_absence_error_message)
+                    error_codes = NOS_API.test_cases_results_info.scart_image_absence_error_code
+                    error_messages = NOS_API.test_cases_results_info.scart_image_absence_error_message
+                    NOS_API.set_error_message("Video Scart")
                     
-                        NOS_API.grabber_stop_video_source()
-                        time.sleep(0.5)
                     
-                        ## Start grabber device with audio on SCART audio source
-                        TEST_CREATION_API.grabber_start_audio_source(TEST_CREATION_API.AudioInterface.LINEIN2)
-                        time.sleep(2)
+                    
+                if(test_result_SCART_video):
                 
-                        ## Record audio from digital output (SCART)
-                        TEST_CREATION_API.record_audio("SCART_audio", MAX_RECORD_AUDIO_TIME)
-                        
-                        #############Comparacao com referencia audio OK############################################
-                        
-                        ### Compare recorded and expected audio and get result of comparison
-                        #audio_result_1 = NOS_API.compare_audio("SCART_channels_switched", "SCART_audio", "[AUDIO_ANALOG]")
-                        #audio_result_2 = NOS_API.compare_audio("SCART_audio_ref2", "SCART_audio", "[AUDIO_ANALOG]")
-                        #
-                        #if (audio_result_1 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_2 >= TEST_CREATION_API.AUDIO_THRESHOLD):
-                        #
-                        #    ## Check is audio present on channel
-                        #    if (TEST_CREATION_API.is_audio_present("SCART_audio")):
-                        #        test_result = "PASS"
-                        #    else:
-                        #        TEST_CREATION_API.write_log_to_file("Audio is not present on SCART interface.")
-                        #        NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_signal_absence_error_code \
-                        #                                            + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
-                        #        error_codes = NOS_API.test_cases_results_info.scart_signal_absence_error_code
-                        #        error_messages = NOS_API.test_cases_results_info.scart_signal_absence_error_message
-                        #        NOS_API.set_error_message("Audio Scart") 
-                        #else:
-                        #    time.sleep(3)
-                        #    
-                        #    NOS_API.display_dialog("Confirme o cabo SCART e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
-                        #    
-                        #    ## Record audio from digital output (SCART)
-                        #    TEST_CREATION_API.record_audio("SCART_audio1", MAX_RECORD_AUDIO_TIME)
-                        #
-                        #    ## Compare recorded and expected audio and get result of comparison
-                        #    audio_result_1 = NOS_API.compare_audio("SCART_channels_switched", "SCART_audio1", "[AUDIO_ANALOG]")
-                        #    audio_result_2 = NOS_API.compare_audio("SCART_audio_ref2", "SCART_audio1", "[AUDIO_ANALOG]")
-                        #
-                        #    if (audio_result_1 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_2 >= TEST_CREATION_API.AUDIO_THRESHOLD):
-                        #
-                        #        ## Check is audio present on channel
-                        #        if (TEST_CREATION_API.is_audio_present("SCART_audio1")):
-                        #            test_result = "PASS"
-                        #        else:
-                        #            TEST_CREATION_API.write_log_to_file("Audio is not present on SCART interface.")
-                        #            NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_signal_absence_error_code \
-                        #                                                    + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
-                        #            error_codes = NOS_API.test_cases_results_info.scart_signal_absence_error_code
-                        #            error_messages = NOS_API.test_cases_results_info.scart_signal_absence_error_message
-                        #            NOS_API.set_error_message("Audio Scart") 
-                        #    else:           
-                        #        TEST_CREATION_API.write_log_to_file("Audio with RT-RK pattern is not reproduced correctly on SCART interface.")
-                        #        NOS_API.update_test_slot_comment("Error codes: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code  \
-                        #                                                    + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_code  \
-                        #                                                    + "; Error messages: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message \
-                        #                                                    + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_message)
-                        #        error_codes = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_code
-                        #        error_messages = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_message
-                        #        NOS_API.set_error_message("Audio Scart") 
-                                
-                        #############Comparacao com referencia audio NOK############################################
+                    NOS_API.grabber_stop_video_source()
+                    time.sleep(0.5)
+                
+                    ## Start grabber device with audio on SCART audio source
+                    TEST_CREATION_API.grabber_start_audio_source(TEST_CREATION_API.AudioInterface.LINEIN2)
+                    time.sleep(2)
+            
+                    ## Record audio from digital output (SCART)
+                    TEST_CREATION_API.record_audio("SCART_audio", MAX_RECORD_AUDIO_TIME)
+                    
+                    #############Comparacao com referencia audio OK############################################
+                    
+                    ### Compare recorded and expected audio and get result of comparison
+                    #audio_result_1 = NOS_API.compare_audio("SCART_channels_switched", "SCART_audio", "[AUDIO_ANALOG]")
+                    #audio_result_2 = NOS_API.compare_audio("SCART_audio_ref2", "SCART_audio", "[AUDIO_ANALOG]")
+                    #
+                    #if (audio_result_1 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_2 >= TEST_CREATION_API.AUDIO_THRESHOLD):
+                    #
+                    #    ## Check is audio present on channel
+                    #    if (TEST_CREATION_API.is_audio_present("SCART_audio")):
+                    #        test_result = "PASS"
+                    #    else:
+                    #        TEST_CREATION_API.write_log_to_file("Audio is not present on SCART interface.")
+                    #        NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_signal_absence_error_code \
+                    #                                            + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
+                    #        error_codes = NOS_API.test_cases_results_info.scart_signal_absence_error_code
+                    #        error_messages = NOS_API.test_cases_results_info.scart_signal_absence_error_message
+                    #        NOS_API.set_error_message("Audio Scart") 
+                    #else:
+                    #    time.sleep(3)
+                    #    
+                    #    NOS_API.display_dialog("Confirme o cabo SCART e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
+                    #    
+                    #    ## Record audio from digital output (SCART)
+                    #    TEST_CREATION_API.record_audio("SCART_audio1", MAX_RECORD_AUDIO_TIME)
+                    #
+                    #    ## Compare recorded and expected audio and get result of comparison
+                    #    audio_result_1 = NOS_API.compare_audio("SCART_channels_switched", "SCART_audio1", "[AUDIO_ANALOG]")
+                    #    audio_result_2 = NOS_API.compare_audio("SCART_audio_ref2", "SCART_audio1", "[AUDIO_ANALOG]")
+                    #
+                    #    if (audio_result_1 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_2 >= TEST_CREATION_API.AUDIO_THRESHOLD):
+                    #
+                    #        ## Check is audio present on channel
+                    #        if (TEST_CREATION_API.is_audio_present("SCART_audio1")):
+                    #            test_result = "PASS"
+                    #        else:
+                    #            TEST_CREATION_API.write_log_to_file("Audio is not present on SCART interface.")
+                    #            NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_signal_absence_error_code \
+                    #                                                    + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
+                    #            error_codes = NOS_API.test_cases_results_info.scart_signal_absence_error_code
+                    #            error_messages = NOS_API.test_cases_results_info.scart_signal_absence_error_message
+                    #            NOS_API.set_error_message("Audio Scart") 
+                    #    else:           
+                    #        TEST_CREATION_API.write_log_to_file("Audio with RT-RK pattern is not reproduced correctly on SCART interface.")
+                    #        NOS_API.update_test_slot_comment("Error codes: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code  \
+                    #                                                    + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_code  \
+                    #                                                    + "; Error messages: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message \
+                    #                                                    + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_message)
+                    #        error_codes = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_code
+                    #        error_messages = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_message
+                    #        NOS_API.set_error_message("Audio Scart") 
                             
+                    #############Comparacao com referencia audio NOK############################################
+                        
+                    ## Compare recorded and expected audio and get result of comparison
+                    audio_result_1 = NOS_API.compare_audio("No_Left_ref", "SCART_audio", "[AUDIO_ANALOG]")
+                    audio_result_2 = NOS_API.compare_audio("No_right_ref", "SCART_audio", "[AUDIO_ANALOG]")
+                    audio_result_3 = NOS_API.compare_audio("No_Both_ref", "SCART_audio", "[AUDIO_ANALOG]")
+            
+                    if not(audio_result_1 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_2 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_3 >= TEST_CREATION_API.AUDIO_THRESHOLD):
+            
+                        ## Check is audio present on channel
+                        if (TEST_CREATION_API.is_audio_present("SCART_audio")):
+                            #test_result = "PASS"
+                            SCART_Result = True
+                        else:
+                            TEST_CREATION_API.write_log_to_file("Audio is not present on SCART interface.")
+                            NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_signal_absence_error_code \
+                                                                + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
+                            error_codes = NOS_API.test_cases_results_info.scart_signal_absence_error_code
+                            error_messages = NOS_API.test_cases_results_info.scart_signal_absence_error_message
+                            NOS_API.set_error_message("Audio Scart") 
+                    else:
+                        time.sleep(3)
+                        
+                        NOS_API.display_dialog("Confirme o cabo SCART e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
+                        
+                        ## Record audio from digital output (SCART)
+                        TEST_CREATION_API.record_audio("SCART_audio1", MAX_RECORD_AUDIO_TIME)
+                    
                         ## Compare recorded and expected audio and get result of comparison
-                        audio_result_1 = NOS_API.compare_audio("No_Left_ref", "SCART_audio", "[AUDIO_ANALOG]")
-                        audio_result_2 = NOS_API.compare_audio("No_right_ref", "SCART_audio", "[AUDIO_ANALOG]")
-                        audio_result_3 = NOS_API.compare_audio("No_Both_ref", "SCART_audio", "[AUDIO_ANALOG]")
-                
+                        audio_result_1 = NOS_API.compare_audio("No_Left_ref", "SCART_audio1", "[AUDIO_ANALOG]")
+                        audio_result_2 = NOS_API.compare_audio("No_right_ref", "SCART_audio1", "[AUDIO_ANALOG]")
+                        audio_result_3 = NOS_API.compare_audio("No_Both_ref", "SCART_audio1", "[AUDIO_ANALOG]")
+                    
                         if not(audio_result_1 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_2 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_3 >= TEST_CREATION_API.AUDIO_THRESHOLD):
-                
+                    
                             ## Check is audio present on channel
-                            if (TEST_CREATION_API.is_audio_present("SCART_audio")):
-                                #test_result = "PASS"
+                            if (TEST_CREATION_API.is_audio_present("SCART_audio1")):
                                 SCART_Result = True
                             else:
                                 TEST_CREATION_API.write_log_to_file("Audio is not present on SCART interface.")
                                 NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_signal_absence_error_code \
-                                                                    + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
+                                                                        + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
                                 error_codes = NOS_API.test_cases_results_info.scart_signal_absence_error_code
                                 error_messages = NOS_API.test_cases_results_info.scart_signal_absence_error_message
                                 NOS_API.set_error_message("Audio Scart") 
-                        else:
-                            time.sleep(3)
+                        else:           
+                            TEST_CREATION_API.write_log_to_file("Audio with RT-RK pattern is not reproduced correctly on SCART interface.")
+                            NOS_API.update_test_slot_comment("Error codes: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code  \
+                                                                        + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_code  \
+                                                                        + "; Error messages: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message \
+                                                                        + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_message)
+                            error_codes = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_code
+                            error_messages = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_message
+                            NOS_API.set_error_message("Audio Scart") 
                             
-                            NOS_API.display_dialog("Confirme o cabo SCART e restantes cabos", NOS_API.WAIT_TIME_TO_CLOSE_DIALOG) == "Continuar"
-                            
-                            ## Record audio from digital output (SCART)
-                            TEST_CREATION_API.record_audio("SCART_audio1", MAX_RECORD_AUDIO_TIME)
-                        
-                            ## Compare recorded and expected audio and get result of comparison
-                            audio_result_1 = NOS_API.compare_audio("No_Left_ref", "SCART_audio1", "[AUDIO_ANALOG]")
-                            audio_result_2 = NOS_API.compare_audio("No_right_ref", "SCART_audio1", "[AUDIO_ANALOG]")
-                            audio_result_3 = NOS_API.compare_audio("No_Both_ref", "SCART_audio1", "[AUDIO_ANALOG]")
-                        
-                            if not(audio_result_1 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_2 >= TEST_CREATION_API.AUDIO_THRESHOLD or audio_result_3 >= TEST_CREATION_API.AUDIO_THRESHOLD):
-                        
-                                ## Check is audio present on channel
-                                if (TEST_CREATION_API.is_audio_present("SCART_audio1")):
-                                    SCART_Result = True
-                                else:
-                                    TEST_CREATION_API.write_log_to_file("Audio is not present on SCART interface.")
-                                    NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.scart_signal_absence_error_code \
-                                                                            + "; Error message: " + NOS_API.test_cases_results_info.scart_signal_absence_error_message)
-                                    error_codes = NOS_API.test_cases_results_info.scart_signal_absence_error_code
-                                    error_messages = NOS_API.test_cases_results_info.scart_signal_absence_error_message
-                                    NOS_API.set_error_message("Audio Scart") 
-                            else:           
-                                TEST_CREATION_API.write_log_to_file("Audio with RT-RK pattern is not reproduced correctly on SCART interface.")
-                                NOS_API.update_test_slot_comment("Error codes: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code  \
-                                                                            + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_code  \
-                                                                            + "; Error messages: " + NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message \
-                                                                            + ";\n" + NOS_API.test_cases_results_info.scart_signal_interference_error_message)
-                                error_codes = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_code + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_code
-                                error_messages = NOS_API.test_cases_results_info.scart_signal_discontinuities_error_message + " " + NOS_API.test_cases_results_info.scart_signal_interference_error_message
-                                NOS_API.set_error_message("Audio Scart") 
-                                
-                
-                
+
                 ################################################################################ HDMI 720p Test ######################################################################################################
                 
                     if(SCART_Result):
@@ -6709,8 +6793,13 @@ def runTest():
                                         video_result = NOS_API.compare_pictures("Factory_Reset_ref", "Factory_Reset", "[Factory_Check]")
                                         video_result_1 = NOS_API.compare_pictures("Factory_Reset_black_ref", "Factory_Reset", "[Factory_Check]")
                                         video_result_2 = NOS_API.compare_pictures("Factory_Reset_ref1", "Factory_Reset", "[Factory_Check]")
-                                        
-                                        if not(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                        video_result_3 = NOS_API.compare_pictures("Factory_Reset_Dict_ref", "Factory_Reset", "[Factory_Check]")
+                                        video_result_4 = NOS_API.compare_pictures("Factory_Reset_Black_Dict_ref", "Factory_Reset", "[Factory_Check]")
+  
+                                        # result = NOS_API.wait_for_multiple_pictures(["menu_720_ref", "menu_black_720_ref"], 25, ["[RESUMO]", "[RESUMO]"], [70, 70])
+                                        # if(result == -1) :
+                                        if not(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_4 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                            time.sleep(20)
                                             TEST_CREATION_API.send_ir_rc_command("[EXIT_ZON_BOX]")
                                             TEST_CREATION_API.send_ir_rc_command("[Factory_Reset_Slow]")
                                             if not(NOS_API.grab_picture("Factory_Reset_1")):
@@ -6757,8 +6846,10 @@ def runTest():
                                             video_result_2 = NOS_API.compare_pictures("Factory_Reset_ref", "Factory_Reset_1", "[Factory_Check]")
                                             video_result_3 = NOS_API.compare_pictures("Factory_Reset_black_ref", "Factory_Reset_1", "[Factory_Check]")
                                             video_result_4 = NOS_API.compare_pictures("Factory_Reset_ref1", "Factory_Reset_1", "[Factory_Check]")
+                                            video_result_5 = NOS_API.compare_pictures("Factory_Reset_Dict_ref", "Factory_Reset_1", "[Factory_Check]")
+                                            video_result_6 = NOS_API.compare_pictures("Factory_Reset_Black_Dict_ref", "Factory_Reset_1", "[Factory_Check]")
                                             
-                                            if not(video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_4 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                            if not(video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_4 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_5 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_6 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                                 TEST_CREATION_API.write_log_to_file("Navigation to resumo screen failed")
                                                 NOS_API.set_error_message("Navegação")
                                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.navigation_error_code \
