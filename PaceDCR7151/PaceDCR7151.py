@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # Software Upgrade_Atualiza Desatualizadas
 # Test name = Software Upgrade
 # Test description = Set environment, perform software upgrade and check STB state after sw upgrade
@@ -857,17 +857,17 @@ def runTest():
                         if (NOS_API.is_signal_present_on_video_source()):                        
                         
                             compare_result = NOS_API.wait_for_multiple_pictures(
-                                                                ["Block_Image_ref", "sw_upgrade_loop_3_ref", "sw_upgrade_loop_3_eng_ref", "sw_update_loop_1_720p", "sw_update_loop_1_1080p", "sw_update_loop_2_720p", "sw_update_loop_2_720p_SD", "UMA_Inst_ref", "SW_UMA_error_ref", "SW_UMA_error_720_ref", "UMA_No_Ch_ref", "UMA_Boot_720_ref", "UMA_Boot_1080_ref", "Color_Channel_ref", "Old_Sw_Message_ref", "Inst_Nagra_ref", "Inst_Nagra_Eng_ref", "Old_Sw_Channel_ref", "Old_Shiftted_Inst_Error_ref", "No_Signal_Nagra_ref", "Old_Shiffted_Channel_ref", "Old_Shiftted_Installation_ref", "Old_SW_Shiftted_ref", "Old_SW_Shiftted_signal_ref", "Old_SW_Shiftted_Eng_ref", "sw_update_error_720p", "sw_update_error1_720p", "sw_update_error2_720p", "Message_Error_No_Channel_ref", "sd_service_720p_ref1", "sd_service_720p_ref2", "sd_service_720p_ref3", "HDMI_video_ref5", "sd_service_ref1", "sd_service_ref2", "sd_service_ref3", "sd_service_ref4", "hd_channel_ref", "hd_channel_ref1", "no_signal_channel_mode_ref", "no_signal_channel_mode_2_ref", "no_signal_channel_mode_720_ref", "no_signal_channel_mode_2_720_ref", "error_message_1080_ref", "menu_576_ref", "menu_720_ref", "menu_1080_ref", "No_Channel_1", "installation_boot_up_ref", "installation_boot_up_ref1", "language_installation_mode_ref", "installation_text_installation_mode_ref", "english_installation", "english_termos", "english_language_installation_ref", "installation_boot_up_ref_old", "installation_boot_up_ref_old_1", "Inst_Success_ref", "installation_boot_up_ref_old_2"],
+                                                                ["Block_Image_ref", "sw_upgrade_loop_3_ref", "sw_upgrade_loop_3_eng_ref", "sw_update_loop_1_720p", "sw_update_loop_1_1080p", "sw_update_loop_2_720p", "sw_update_loop_2_720p_SD", "FTI_UMA_1080_ref", "UMA_Inst_ref", "SW_UMA_error_ref", "SW_UMA_error_720_ref", "UMA_No_Ch_ref", "UMA_Boot_720_ref", "UMA_Boot_1080_ref", "Color_Channel_ref", "Old_Sw_Message_ref", "Inst_Nagra_ref", "Inst_Nagra_Eng_ref", "Old_Sw_Channel_ref", "Old_Shiftted_Inst_Error_ref", "No_Signal_Nagra_ref", "Old_Shiffted_Channel_ref", "Old_Shiftted_Installation_ref", "Old_SW_Shiftted_ref", "Old_SW_Shiftted_signal_ref", "Old_SW_Shiftted_Eng_ref", "sw_update_error_720p", "sw_update_error1_720p", "sw_update_error2_720p", "Message_Error_No_Channel_ref", "sd_service_720p_ref1", "sd_service_720p_ref2", "sd_service_720p_ref3", "HDMI_video_ref5", "sd_service_ref1", "sd_service_ref2", "sd_service_ref3", "sd_service_ref4", "hd_channel_ref", "hd_channel_ref1", "no_signal_channel_mode_ref", "no_signal_channel_mode_2_ref", "no_signal_channel_mode_720_ref", "no_signal_channel_mode_720_ref", "no_signal_channel_mode_2_720_ref", "error_message_1080_ref", "error_message_1080_ref", "menu_576_ref", "menu_720_ref", "menu_1080_ref", "No_Channel_1", "No_Channel_ref", "installation_boot_up_ref", "installation_boot_up_ref1", "language_installation_mode_ref", "installation_text_installation_mode_ref", "english_installation", "english_termos", "english_language_installation_ref", "installation_boot_up_ref_old", "installation_boot_up_ref_old_1", "Inst_Success_ref", "installation_boot_up_ref_old_2"],
                                                                 delta_check,
-                                                                ["[FULL_SCREEN]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_1_720p]", "[SW_UPDATE_LOOP_1_1080p]", "[SW_UPDATE_LOOP_720p]", "[SW_UPDATE_LOOP_720p]", "[UMA_Inst_1080]", "[SW_UMA_ERROR]", "[SW_UMA_ERROR_720]", "[UMA_No_Ch_1080]", "[UMA_Boot_720]", "[UMA_Boot_1080]", "[Uma_Sw_Channel]", "[Old_Sw_Message]", "[Inst_Nagra_720]", "[Inst_Nagra_720]", "[HALF_SCREEN_SD_CH_1080p]", "[Old_Shiftted_Inst_Error]", "[No_Signal_Nagra]", "[Old_Shiftted_Channel]", "[Old_Shiftted_Installation]", "[Old_SW_Shiftted_ref]", "[Old_SW_Shiftted_Signal_ref]", "[Old_SW_Shiftted_ref]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p]", "[Message_Error_No_Channel]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_HD]", "[HALF_SCREEN_HD]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE]", "[MENU_576]", "[MENU_720]", "[MENU_1080]", "[No_Channel_1]", "[FTI_AFTER_SW_UPGRADE]", "[FTI_AFTER_SW_UPGRADE]", "[LANGUAGE_INSTALLATION_MODE]", "[INSTALLATION_TEXT_FTI]", "[INSTALLATION_ENGLISH]", "[ENGLISH_TERMOS]", "[ENGLISH_INSTALLATION_LANGUAGE]", "[FTI_AFTER_SW_UPGRADE_OLD]", "[FTI_AFTER_SW_UPGRADE_OLD_1]", "[Inst_Success]", "[FTI_AFTER_SW_UPGRADE]"],
-                                                                [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 30, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80])                       
+                                                                ["[FULL_SCREEN]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_1_720p]", "[SW_UPDATE_LOOP_1_1080p]", "[SW_UPDATE_LOOP_720p]", "[SW_UPDATE_LOOP_720p]", "[FTI_UMA_1080]", "[UMA_Inst_1080]", "[SW_UMA_ERROR]", "[SW_UMA_ERROR_720]", "[UMA_No_Ch_1080]", "[UMA_Boot_720]", "[UMA_Boot_1080]", "[Uma_Sw_Channel]", "[Old_Sw_Message]", "[Inst_Nagra_720]", "[Inst_Nagra_720]", "[HALF_SCREEN_SD_CH_1080p]", "[Old_Shiftted_Inst_Error]", "[No_Signal_Nagra]", "[Old_Shiftted_Channel]", "[Old_Shiftted_Installation]", "[Old_SW_Shiftted_ref]", "[Old_SW_Shiftted_Signal_ref]", "[Old_SW_Shiftted_ref]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p_ENG]", "[Message_Error_No_Channel]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_HD]", "[HALF_SCREEN_HD]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[Channel_Error_Message_720]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE]", "[Channel_Error_Message_1080]", "[MENU_576]", "[MENU_720]", "[MENU_1080]", "[No_Channel_1]", "[No_Channel_720]", "[FTI_AFTER_SW_UPGRADE]", "[FTI_AFTER_SW_UPGRADE]", "[LANGUAGE_INSTALLATION_MODE]", "[INSTALLATION_TEXT_FTI]", "[INSTALLATION_ENGLISH]", "[ENGLISH_TERMOS]", "[ENGLISH_INSTALLATION_LANGUAGE]", "[FTI_AFTER_SW_UPGRADE_OLD]", "[FTI_AFTER_SW_UPGRADE_OLD_1]", "[Inst_Success]", "[FTI_AFTER_SW_UPGRADE]"],
+                                                                [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 30, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80])                       
 
-                            if(compare_result == 1 or compare_result == 2 or compare_result == 3 or compare_result == 4 or compare_result >= 48):
+                            if(compare_result == 1 or compare_result == 2 or compare_result >= 52):
                                 NOS_API.test_cases_results_info.channel_boot_up_state = False
                                 time.sleep(2)
                                 Software_Upgrade_TestCase = True
                                 upgrade = 2
-                            elif(compare_result > 6 and compare_result < 28):
+                            elif(compare_result > 6 and compare_result < 29):
                                 if (upgrade == 0):
                                     upgrade = upgrade + 1
                                 else:
@@ -880,7 +880,7 @@ def runTest():
                                     error_messages = NOS_API.test_cases_results_info.upgrade_nok_error_message                               
                                     test_result = "FAIL"
                                     upgrade = 2
-                            elif(compare_result == 5 or compare_result == 6 or compare_result >= 28 and compare_result < 48):
+                            elif(compare_result == 3 or compare_result == 4 or compare_result == 5 or compare_result == 6 or compare_result >= 29 and compare_result < 52):
                                 NOS_API.test_cases_results_info.channel_boot_up_state = True
                                 
                                 result = NOS_API.wait_for_multiple_pictures(
@@ -1299,44 +1299,9 @@ def runTest():
                                         signal_detected_on_hdmi = True
                                         signal_detected_on_cvbs = True
                                         if not (NOS_API.grab_picture("HDMI_Image")):
-                                            TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                            NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                                + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                            NOS_API.set_error_message("Video HDMI")
-                                            error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                            error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
-                                            
-                                            NOS_API.add_test_case_result_to_file_report(
-                                                        test_result,
-                                                        "- - - - - - - - - - - - - - - - - - - -",
-                                                        "- - - - - - - - - - - - - - - - - - - -",
-                                                        error_codes,
-                                                        error_messages)
-                            
-                                            end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                            report_file = NOS_API.create_test_case_log_file(
-                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                            NOS_API.test_cases_results_info.nos_sap_number,
-                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                            NOS_API.test_cases_results_info.mac_using_barcode,
-                                                            end_time)
-                                        
-                                            NOS_API.upload_file_report(report_file)
-                                            NOS_API.test_cases_results_info.isTestOK = False
-                                                                    
-                                            NOS_API.send_report_over_mqtt_test_plan(
-                                                    test_result,
-                                                    end_time,
-                                                    error_codes,
-                                                    report_file)
-                                                    
-                                            ## Update test result
-                                            TEST_CREATION_API.update_test_result(test_result)
-                                            
-                                            ## Return DUT to initial state and de-initialize grabber device
-                                            NOS_API.deinitialize()
-                                            
-                                            return
+                                            signal_detected_on_hdmi = False
+                                            signal_detected_on_cvbs = False
+                                            continue
                                         break
             
                             ## Start grabber device with video on CVBS2
@@ -1434,44 +1399,9 @@ def runTest():
                                     if(result == -1):
                                         signal_detected_on_hdmi = True
                                         if not (NOS_API.grab_picture("HDMI_Image")):
-                                            TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                            NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                                + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                            NOS_API.set_error_message("Video HDMI")
-                                            error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                            error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
-                                            
-                                            NOS_API.add_test_case_result_to_file_report(
-                                                        test_result,
-                                                        "- - - - - - - - - - - - - - - - - - - -",
-                                                        "- - - - - - - - - - - - - - - - - - - -",
-                                                        error_codes,
-                                                        error_messages)
-                            
-                                            end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                            report_file = NOS_API.create_test_case_log_file(
-                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                            NOS_API.test_cases_results_info.nos_sap_number,
-                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                            NOS_API.test_cases_results_info.mac_using_barcode,
-                                                            end_time)
-                                        
-                                            NOS_API.upload_file_report(report_file)
-                                            NOS_API.test_cases_results_info.isTestOK = False
-                                                                    
-                                            NOS_API.send_report_over_mqtt_test_plan(
-                                                    test_result,
-                                                    end_time,
-                                                    error_codes,
-                                                    report_file)
-                                                    
-                                            ## Update test result
-                                            TEST_CREATION_API.update_test_result(test_result)
-                                            
-                                            ## Return DUT to initial state and de-initialize grabber device
-                                            NOS_API.deinitialize()
-                                            
-                                            return
+                                            signal_detected_on_hdmi = False
+                                            signal_detected_on_cvbs = False
+                                            continue
                                     elif(result == 2 and signal_detected_on_cvbs == True):
                                         counter_black = counter_black + 1  
                                         time.sleep(10)
@@ -1578,7 +1508,7 @@ def runTest():
                                                                         ["[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_720p]", "[SW_UPDATE_LOOP_720p]", "[SW_UPDATE_LOOP_720p]", "[SW_UPDATE_ERROR_720p]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_HD]", "[HALF_SCREEN_HD]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE]", "[MENU_576]", "[MENU_720]", "[MENU_1080]", "[No_Channel_1]", "[FTI_AFTER_SW_UPGRADE]", "[FTI_AFTER_SW_UPGRADE]", "[LANGUAGE_INSTALLATION_MODE]", "[INSTALLATION_TEXT_FTI]", "[INSTALLATION_ENGLISH]", "[ENGLISH_TERMOS]", "[ENGLISH_INSTALLATION_LANGUAGE]", "[FTI_AFTER_SW_UPGRADE_OLD]", "[FTI_AFTER_SW_UPGRADE_OLD_1]", "[Inst_Success]"],
                                                                         [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 30, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80])                       
             
-                                    if(compare_result == 0 or compare_result == 1 or compare_result == 2 or compare_result >= 25):
+                                    if(compare_result == 0 or compare_result == 1 or compare_result >= 25):
                                         NOS_API.test_cases_results_info.channel_boot_up_state = False 
                                         time.sleep(5)
                                         test_result_boot = True
@@ -1623,7 +1553,7 @@ def runTest():
                                         NOS_API.deinitialize()
                                         
                                         return                           
-                                    elif(compare_result == 3 or compare_result == 4 or compare_result >= 6 and compare_result < 25):
+                                    elif(compare_result == 2 or compare_result == 3 or compare_result == 4 or compare_result >= 6 and compare_result < 25):
                                         NOS_API.test_cases_results_info.channel_boot_up_state = True
                                         
                                         result = NOS_API.wait_for_multiple_pictures(
@@ -1905,50 +1835,52 @@ def runTest():
                         if (NOS_API.test_cases_results_info.channel_boot_up_state):
                             time.sleep(5)
                             TEST_CREATION_API.send_ir_rc_command("[CH_1]")
-                            time.sleep(3)
+                            time.sleep(5)
                     
                             video_height = NOS_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)
                             
                             TEST_CREATION_API.send_ir_rc_command("[MENU]")
                             time.sleep(1)
                             if not (NOS_API.grab_picture("Check_Nagra")):
-                                TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                    + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                NOS_API.set_error_message("Video HDMI")
-                                error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                        + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                NOS_API.set_error_message("Reboot")
+                                error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                error_messages = NOS_API.test_cases_results_info.reboot_error_message
+                                test_result = "FAIL"
                                 
                                 NOS_API.add_test_case_result_to_file_report(
-                                            test_result,
-                                            "- - - - - - - - - - - - - - - - - - - -",
-                                            "- - - - - - - - - - - - - - - - - - - -",
-                                            error_codes,
-                                            error_messages)
-                
+                                                test_result,
+                                                "- - - - - - - - - - - - - - - - - - - -",
+                                                "- - - - - - - - - - - - - - - - - - - -",
+                                                error_codes,
+                                                error_messages)
                                 end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                report_file = NOS_API.create_test_case_log_file(
-                                                NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                NOS_API.test_cases_results_info.nos_sap_number,
-                                                NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                NOS_API.test_cases_results_info.mac_using_barcode,
-                                                end_time)
-                            
-                                NOS_API.upload_file_report(report_file)
-                                NOS_API.test_cases_results_info.isTestOK = False
-                                                        
-                                NOS_API.send_report_over_mqtt_test_plan(
-                                        test_result,
-                                        end_time,
-                                        error_codes,
-                                        report_file)
-                                        
+                                report_file = ""
+                                if (test_result != "PASS"):
+                                    report_file = NOS_API.create_test_case_log_file(
+                                                    NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                    NOS_API.test_cases_results_info.nos_sap_number,
+                                                    NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                    NOS_API.test_cases_results_info.mac_using_barcode,
+                                                    end_time)
+                                    NOS_API.upload_file_report(report_file)
+                                    NOS_API.test_cases_results_info.isTestOK = False
+                
+                
                                 ## Update test result
                                 TEST_CREATION_API.update_test_result(test_result)
                                 
                                 ## Return DUT to initial state and de-initialize grabber device
                                 NOS_API.deinitialize()
                                 
+                                NOS_API.send_report_over_mqtt_test_plan(
+                                    test_result,
+                                    end_time,
+                                    error_codes,
+                                    report_file)
+                
                                 return
                             
                             if (video_height == "720"):
@@ -1960,11 +1892,12 @@ def runTest():
                                 video_result = NOS_API.compare_pictures("Check_Nagra_1080_ref", "Check_Nagra", "[Check_Nagra_1080]")
                                 video_result_1 = NOS_API.compare_pictures("Check_UMA_1080_ref", "Check_Nagra", "[Check_UMA_1080]")
                                 video_result_2 = NOS_API.compare_pictures("Check_UMA_1080_ref_2", "Check_Nagra", "[Check_UMA_1080_2]")
+                                video_result_3 = NOS_API.compare_pictures("Check_UMA_eng_1080_ref", "Check_Nagra", "[Check_UMA_1080_3]")
                                 video_result_oposite = NOS_API.compare_pictures("Old_Menu_1080_ref", "Check_Nagra", "[Old_Menu_1080]")
                             elif (video_height == "576"):
                                 video_result == NOS_API.compare_pictures("Check_Nagra_576_ref", "Check_Nagra", "[Check_Nagra_576]")
                             
-                            if (video_height == "720" and video_result >= 80 or video_height == "1080" and video_result >= 80 or video_height == "576" and video_result >= 50):
+                            if ((video_height == "720" and video_result >= 80) or (video_height == "1080" and video_result >= 80) or (video_height == "576" and video_result >= 50)):
                                 if (upgrade == 0 and NOS_API.Upgrade_State == 0):
                                     upgrade = upgrade + 1
                                     continue
@@ -2006,7 +1939,7 @@ def runTest():
                                     
                                     return
                             
-                            if (video_height == "1080" and video_result_1 >= NOS_API.thres_2 or video_height == "720" and video_result_1 >= 80 or video_height == "1080" and video_result_2 >= 80 or video_height == "720" and video_result_2 >= 80):
+                            if ((video_height == "1080" and video_result_1 >= NOS_API.thres_2) or (video_height == "720" and video_result_1 >= 80) or (video_height == "1080" and video_result_2 >= 80) or (video_height == "720" and video_result_2 >= 80) or (video_height == "1080" and video_result_3 >= 80)):
                                 if (upgrade == 0 and NOS_API.Upgrade_State == 0):
                                     upgrade = upgrade + 1
                                     continue
@@ -2099,90 +2032,96 @@ def runTest():
                                 TEST_CREATION_API.send_ir_rc_command("[RESOLUTION_SETTINGS]")
                                 if (video_height == "720"):
                                     if not (NOS_API.grab_picture("Resolution_720_Confirmation")):
-                                        TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                            + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                        NOS_API.set_error_message("Video HDMI")
-                                        error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                        error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                        TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                                + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                        NOS_API.set_error_message("Reboot")
+                                        error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                        error_messages = NOS_API.test_cases_results_info.reboot_error_message
+                                        test_result = "FAIL"
                                         
                                         NOS_API.add_test_case_result_to_file_report(
-                                                    test_result,
-                                                    "- - - - - - - - - - - - - - - - - - - -",
-                                                    "- - - - - - - - - - - - - - - - - - - -",
-                                                    error_codes,
-                                                    error_messages)
-                        
+                                                        test_result,
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        error_codes,
+                                                        error_messages)
                                         end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                        report_file = NOS_API.create_test_case_log_file(
-                                                        NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                        NOS_API.test_cases_results_info.nos_sap_number,
-                                                        NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                        NOS_API.test_cases_results_info.mac_using_barcode,
-                                                        end_time)
-                                    
-                                        NOS_API.upload_file_report(report_file)
-                                        NOS_API.test_cases_results_info.isTestOK = False
-                                                                
-                                        NOS_API.send_report_over_mqtt_test_plan(
-                                                test_result,
-                                                end_time,
-                                                error_codes,
-                                                report_file)
-                                                
+                                        report_file = ""
+                                        if (test_result != "PASS"):
+                                            report_file = NOS_API.create_test_case_log_file(
+                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                            NOS_API.test_cases_results_info.nos_sap_number,
+                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                            NOS_API.test_cases_results_info.mac_using_barcode,
+                                                            end_time)
+                                            NOS_API.upload_file_report(report_file)
+                                            NOS_API.test_cases_results_info.isTestOK = False
+                        
+                        
                                         ## Update test result
                                         TEST_CREATION_API.update_test_result(test_result)
                                         
                                         ## Return DUT to initial state and de-initialize grabber device
                                         NOS_API.deinitialize()
                                         
+                                        NOS_API.send_report_over_mqtt_test_plan(
+                                            test_result,
+                                            end_time,
+                                            error_codes,
+                                            report_file)
+                        
                                         return
                                     comparassion_result = NOS_API.compare_pictures("Resolution_Confirmation_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
                                     comparassion_result_1 = NOS_API.compare_pictures("Resolution_Confirmation_1_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
                                     comparassion_result_2 = NOS_API.compare_pictures("Resolution_Confirmation_Dict_ref", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
-                                    if (comparassion_result >= 80 or comparassion_result_1 >= 80 or comparassion_result_2 >= 80):
+                                    comparassion_result_3 = NOS_API.compare_pictures("Resolution_Confirmation_ref2", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
+                                    comparassion_result_4 = NOS_API.compare_pictures("Resolution_Confirmation_ref3", "Resolution_720_Confirmation", "[Resolution_Confirmation]")
+                                    if (comparassion_result >= 80 or comparassion_result_1 >= 80 or comparassion_result_2 >= 80 or comparassion_result_3 >= 80 or comparassion_result_4 >= 80):
                                         TEST_CREATION_API.send_ir_rc_command("[Confirm_720]")
                                         TEST_CREATION_API.send_ir_rc_command("[ReNavigate_Resolution_Settings]")
                                 TEST_CREATION_API.send_ir_rc_command("[SET_1080i_FROM_MENU_new]")
                                 time.sleep(1)
                                 if not (NOS_API.grab_picture("Resolution_Print")):
-                                    TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                    NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                        + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                    NOS_API.set_error_message("Video HDMI")
-                                    error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                    error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                    TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                    NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                            + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                    NOS_API.set_error_message("Reboot")
+                                    error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                    error_messages = NOS_API.test_cases_results_info.reboot_error_message
+                                    test_result = "FAIL"
                                     
                                     NOS_API.add_test_case_result_to_file_report(
-                                                test_result,
-                                                "- - - - - - - - - - - - - - - - - - - -",
-                                                "- - - - - - - - - - - - - - - - - - - -",
-                                                error_codes,
-                                                error_messages)
-                    
+                                                    test_result,
+                                                    "- - - - - - - - - - - - - - - - - - - -",
+                                                    "- - - - - - - - - - - - - - - - - - - -",
+                                                    error_codes,
+                                                    error_messages)
                                     end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                    report_file = NOS_API.create_test_case_log_file(
-                                                    NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                    NOS_API.test_cases_results_info.nos_sap_number,
-                                                    NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                    NOS_API.test_cases_results_info.mac_using_barcode,
-                                                    end_time)
-                                
-                                    NOS_API.upload_file_report(report_file)
-                                    NOS_API.test_cases_results_info.isTestOK = False
-                                                            
-                                    NOS_API.send_report_over_mqtt_test_plan(
-                                            test_result,
-                                            end_time,
-                                            error_codes,
-                                            report_file)
-                                            
+                                    report_file = ""
+                                    if (test_result != "PASS"):
+                                        report_file = NOS_API.create_test_case_log_file(
+                                                        NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                        NOS_API.test_cases_results_info.nos_sap_number,
+                                                        NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                        NOS_API.test_cases_results_info.mac_using_barcode,
+                                                        end_time)
+                                        NOS_API.upload_file_report(report_file)
+                                        NOS_API.test_cases_results_info.isTestOK = False
+                    
+                    
                                     ## Update test result
                                     TEST_CREATION_API.update_test_result(test_result)
                                     
                                     ## Return DUT to initial state and de-initialize grabber device
                                     NOS_API.deinitialize()
                                     
+                                    NOS_API.send_report_over_mqtt_test_plan(
+                                        test_result,
+                                        end_time,
+                                        error_codes,
+                                        report_file)
+                    
                                     return
                                 TEST_CREATION_API.send_ir_rc_command("[EXIT_ZON_BOX_NEW]")
                                 time.sleep(1)
@@ -2192,90 +2131,96 @@ def runTest():
                                     TEST_CREATION_API.send_ir_rc_command("[RESOLUTION_SETTINGS_SLOW]")
                                     if (video_height == "720"):
                                         if not (NOS_API.grab_picture("Resolution_720_Confirmation_1")):
-                                            TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                            NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                                + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                            NOS_API.set_error_message("Video HDMI")
-                                            error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                            error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                            TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                            NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                                    + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                            NOS_API.set_error_message("Reboot")
+                                            error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                            error_messages = NOS_API.test_cases_results_info.reboot_error_message
+                                            test_result = "FAIL"
                                             
                                             NOS_API.add_test_case_result_to_file_report(
-                                                        test_result,
-                                                        "- - - - - - - - - - - - - - - - - - - -",
-                                                        "- - - - - - - - - - - - - - - - - - - -",
-                                                        error_codes,
-                                                        error_messages)
-                            
+                                                            test_result,
+                                                            "- - - - - - - - - - - - - - - - - - - -",
+                                                            "- - - - - - - - - - - - - - - - - - - -",
+                                                            error_codes,
+                                                            error_messages)
                                             end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                            report_file = NOS_API.create_test_case_log_file(
-                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                            NOS_API.test_cases_results_info.nos_sap_number,
-                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                            NOS_API.test_cases_results_info.mac_using_barcode,
-                                                            end_time)
-                                        
-                                            NOS_API.upload_file_report(report_file)
-                                            NOS_API.test_cases_results_info.isTestOK = False
-                                                                    
-                                            NOS_API.send_report_over_mqtt_test_plan(
-                                                    test_result,
-                                                    end_time,
-                                                    error_codes,
-                                                    report_file)
-                                                    
+                                            report_file = ""
+                                            if (test_result != "PASS"):
+                                                report_file = NOS_API.create_test_case_log_file(
+                                                                NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                                NOS_API.test_cases_results_info.nos_sap_number,
+                                                                NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                                NOS_API.test_cases_results_info.mac_using_barcode,
+                                                                end_time)
+                                                NOS_API.upload_file_report(report_file)
+                                                NOS_API.test_cases_results_info.isTestOK = False
+                            
+                            
                                             ## Update test result
                                             TEST_CREATION_API.update_test_result(test_result)
                                             
                                             ## Return DUT to initial state and de-initialize grabber device
                                             NOS_API.deinitialize()
                                             
+                                            NOS_API.send_report_over_mqtt_test_plan(
+                                                test_result,
+                                                end_time,
+                                                error_codes,
+                                                report_file)
+                            
                                             return
                                         comparassion_result = NOS_API.compare_pictures("Resolution_Confirmation_ref", "Resolution_720_Confirmation_1", "[Resolution_Confirmation]")
                                         comparassion_result_1 = NOS_API.compare_pictures("Resolution_Confirmation_1_ref", "Resolution_720_Confirmation_1", "[Resolution_Confirmation]")
                                         comparassion_result_2 = NOS_API.compare_pictures("Resolution_Confirmation_Dict_ref", "Resolution_720_Confirmation_1", "[Resolution_Confirmation]")
-                                        if (comparassion_result >= 80 or comparassion_result_1 >= 80 or comparassion_result_2 >= 80):
+                                        comparassion_result_3 = NOS_API.compare_pictures("Resolution_Confirmation_ref2", "Resolution_720_Confirmation_1", "[Resolution_Confirmation]")
+                                        comparassion_result_4 = NOS_API.compare_pictures("Resolution_Confirmation_ref3", "Resolution_720_Confirmation_1", "[Resolution_Confirmation]")
+                                        if (comparassion_result >= 80 or comparassion_result_1 >= 80 or comparassion_result_2 >= 80 or comparassion_result_3 >= 80 or comparassion_result_4 >= 80):
                                             TEST_CREATION_API.send_ir_rc_command("[Confirm_720]")
                                             TEST_CREATION_API.send_ir_rc_command("[ReNavigate_Resolution_Settings]")
                                     TEST_CREATION_API.send_ir_rc_command("[SET_1080i_FROM_MENU]")
                                     time.sleep(1)
                                     if not (NOS_API.grab_picture("Resolution_Second_Print")):
-                                        TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                            + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                        NOS_API.set_error_message("Video HDMI")
-                                        error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                        error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                        TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                                + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                        NOS_API.set_error_message("Reboot")
+                                        error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                        error_messages = NOS_API.test_cases_results_info.reboot_error_message
+                                        test_result = "FAIL"
                                         
                                         NOS_API.add_test_case_result_to_file_report(
-                                                    test_result,
-                                                    "- - - - - - - - - - - - - - - - - - - -",
-                                                    "- - - - - - - - - - - - - - - - - - - -",
-                                                    error_codes,
-                                                    error_messages)
-                        
+                                                        test_result,
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        error_codes,
+                                                        error_messages)
                                         end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                        report_file = NOS_API.create_test_case_log_file(
-                                                        NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                        NOS_API.test_cases_results_info.nos_sap_number,
-                                                        NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                        NOS_API.test_cases_results_info.mac_using_barcode,
-                                                        end_time)
-                                    
-                                        NOS_API.upload_file_report(report_file)
-                                        NOS_API.test_cases_results_info.isTestOK = False
-                                                                
-                                        NOS_API.send_report_over_mqtt_test_plan(
-                                                test_result,
-                                                end_time,
-                                                error_codes,
-                                                report_file)
-                                                
+                                        report_file = ""
+                                        if (test_result != "PASS"):
+                                            report_file = NOS_API.create_test_case_log_file(
+                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                            NOS_API.test_cases_results_info.nos_sap_number,
+                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                            NOS_API.test_cases_results_info.mac_using_barcode,
+                                                            end_time)
+                                            NOS_API.upload_file_report(report_file)
+                                            NOS_API.test_cases_results_info.isTestOK = False
+                        
+                        
                                         ## Update test result
                                         TEST_CREATION_API.update_test_result(test_result)
                                         
                                         ## Return DUT to initial state and de-initialize grabber device
                                         NOS_API.deinitialize()
                                         
+                                        NOS_API.send_report_over_mqtt_test_plan(
+                                            test_result,
+                                            end_time,
+                                            error_codes,
+                                            report_file)
+                        
                                         return
                                     TEST_CREATION_API.send_ir_rc_command("[BACK_3]")
                                     video_height = NOS_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)
@@ -2555,43 +2500,45 @@ def runTest():
                                 return
                             if (result == -1):
                                 if not (NOS_API.grab_picture("Sw_Version_First_Navigation")):
-                                    TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                                    NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                                        + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                    NOS_API.set_error_message("Video HDMI")
-                                    error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                    error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                    TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                    NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                            + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                    NOS_API.set_error_message("Reboot")
+                                    error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                    error_messages = NOS_API.test_cases_results_info.reboot_error_message
+                                    test_result = "FAIL"
                                     
                                     NOS_API.add_test_case_result_to_file_report(
-                                                test_result,
-                                                "- - - - - - - - - - - - - - - - - - - -",
-                                                "- - - - - - - - - - - - - - - - - - - -",
-                                                error_codes,
-                                                error_messages)
-                    
+                                                    test_result,
+                                                    "- - - - - - - - - - - - - - - - - - - -",
+                                                    "- - - - - - - - - - - - - - - - - - - -",
+                                                    error_codes,
+                                                    error_messages)
                                     end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-                                    report_file = NOS_API.create_test_case_log_file(
-                                                    NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                    NOS_API.test_cases_results_info.nos_sap_number,
-                                                    NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                    NOS_API.test_cases_results_info.mac_using_barcode,
-                                                    end_time)
-                                
-                                    NOS_API.upload_file_report(report_file)
-                                    NOS_API.test_cases_results_info.isTestOK = False
-                                                            
-                                    NOS_API.send_report_over_mqtt_test_plan(
-                                            test_result,
-                                            end_time,
-                                            error_codes,
-                                            report_file)
-                                            
+                                    report_file = ""
+                                    if (test_result != "PASS"):
+                                        report_file = NOS_API.create_test_case_log_file(
+                                                        NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                        NOS_API.test_cases_results_info.nos_sap_number,
+                                                        NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                        NOS_API.test_cases_results_info.mac_using_barcode,
+                                                        end_time)
+                                        NOS_API.upload_file_report(report_file)
+                                        NOS_API.test_cases_results_info.isTestOK = False
+                    
+                    
                                     ## Update test result
                                     TEST_CREATION_API.update_test_result(test_result)
                                     
                                     ## Return DUT to initial state and de-initialize grabber device
                                     NOS_API.deinitialize()
                                     
+                                    NOS_API.send_report_over_mqtt_test_plan(
+                                        test_result,
+                                        end_time,
+                                        error_codes,
+                                        report_file)
+                    
                                     return
                                 TEST_CREATION_API.send_ir_rc_command("[EXIT_ZON_BOX]")
                                 time.sleep(2)
@@ -2692,29 +2639,33 @@ def runTest():
                             else:
                                 Dict = False                                
                             if not(NOS_API.grab_picture("STB_Version")):
-                                TEST_CREATION_API.write_log_to_file("HDMI NOK")
-                                NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                        + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                NOS_API.set_error_message("Video HDMI")
-                                error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
-                                NOS_API.add_test_case_result_to_file_report(
-                                                                test_result,
-                                                                "- - - - - - - - - - - - - - - - - - - -",
-                                                                ">50<70 <1.0E-6 - - - - - - - - - - - - - - - - - -",
-                                                                error_codes,
-                                                                error_messages)
-                                end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                                report_file = ""    
-                
-                                report_file = NOS_API.create_test_case_log_file(
-                                                NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                NOS_API.test_cases_results_info.nos_sap_number,
-                                                NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                NOS_API.test_cases_results_info.mac_using_barcode,
-                                                end_time)
-                                NOS_API.upload_file_report(report_file)
+                                TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                        + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                NOS_API.set_error_message("Reboot")
+                                error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                error_messages = NOS_API.test_cases_results_info.reboot_error_message
+                                test_result = "FAIL"
                                 
+                                NOS_API.add_test_case_result_to_file_report(
+                                                test_result,
+                                                "- - - - - - - - - - - - - - - - - - - -",
+                                                "- - - - - - - - - - - - - - - - - - - -",
+                                                error_codes,
+                                                error_messages)
+                                end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+                                report_file = ""
+                                if (test_result != "PASS"):
+                                    report_file = NOS_API.create_test_case_log_file(
+                                                    NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                    NOS_API.test_cases_results_info.nos_sap_number,
+                                                    NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                    NOS_API.test_cases_results_info.mac_using_barcode,
+                                                    end_time)
+                                    NOS_API.upload_file_report(report_file)
+                                    NOS_API.test_cases_results_info.isTestOK = False
+                
+                
                                 ## Update test result
                                 TEST_CREATION_API.update_test_result(test_result)
                                 
@@ -2722,11 +2673,11 @@ def runTest():
                                 NOS_API.deinitialize()
                                 
                                 NOS_API.send_report_over_mqtt_test_plan(
-                                        test_result,
-                                        end_time,
-                                        error_codes,
-                                        report_file)
-                                
+                                    test_result,
+                                    end_time,
+                                    error_codes,
+                                    report_file)
+                
                                 return
                             
                             if (Dict):
@@ -2939,30 +2890,33 @@ def runTest():
                             
                         else:
                             if not(NOS_API.grab_picture("Check_Signal_Menu")):
-                                TEST_CREATION_API.write_log_to_file("HDMI NOK")
-                                NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                        + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                                NOS_API.set_error_message("Video HDMI")
-                                error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                                error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
+                                NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
+                                                        + "; Error message: " + NOS_API.test_cases_results_info.reboot_error_message)
+                                NOS_API.set_error_message("Reboot")
+                                error_codes = NOS_API.test_cases_results_info.reboot_error_code
+                                error_messages = NOS_API.test_cases_results_info.reboot_error_message
                                 test_result = "FAIL"
-                                NOS_API.add_test_case_result_to_file_report(
-                                                                test_result,
-                                                                "- - - - - - - - - - - - - - - - - - - -",
-                                                                ">50<70 <1.0E-6 - - - - - - - - - - - - - - - - - -",
-                                                                error_codes,
-                                                                error_messages)
-                                end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                                report_file = ""    
-                
-                                report_file = NOS_API.create_test_case_log_file(
-                                                NOS_API.test_cases_results_info.s_n_using_barcode,
-                                                NOS_API.test_cases_results_info.nos_sap_number,
-                                                NOS_API.test_cases_results_info.cas_id_using_barcode,
-                                                NOS_API.test_cases_results_info.mac_using_barcode,
-                                                end_time)
-                                NOS_API.upload_file_report(report_file)
                                 
+                                NOS_API.add_test_case_result_to_file_report(
+                                                test_result,
+                                                "- - - - - - - - - - - - - - - - - - - -",
+                                                "- - - - - - - - - - - - - - - - - - - -",
+                                                error_codes,
+                                                error_messages)
+                                end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+                                report_file = ""
+                                if (test_result != "PASS"):
+                                    report_file = NOS_API.create_test_case_log_file(
+                                                    NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                    NOS_API.test_cases_results_info.nos_sap_number,
+                                                    NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                    NOS_API.test_cases_results_info.mac_using_barcode,
+                                                    end_time)
+                                    NOS_API.upload_file_report(report_file)
+                                    NOS_API.test_cases_results_info.isTestOK = False
+                
+                
                                 ## Update test result
                                 TEST_CREATION_API.update_test_result(test_result)
                                 
@@ -2970,11 +2924,11 @@ def runTest():
                                 NOS_API.deinitialize()
                                 
                                 NOS_API.send_report_over_mqtt_test_plan(
-                                        test_result,
-                                        end_time,
-                                        error_codes,
-                                        report_file)
-                                
+                                    test_result,
+                                    end_time,
+                                    error_codes,
+                                    report_file)
+                
                                 return
                             
                             if not(TEST_CREATION_API.compare_pictures("installation_boot_up_ref", "Check_Signal_Menu", "[Check_Signal_Menu]") or TEST_CREATION_API.compare_pictures("english_installation", "Check_Signal_Menu", "[Check_Signal_Menu]") or TEST_CREATION_API.compare_pictures("installation_boot_up_ref1", "Check_Signal_Menu", "[Check_Signal_Menu]")):
@@ -3025,9 +2979,15 @@ def runTest():
                                 TEST_CREATION_API.update_test_result(test_result)
                                 
                                 return
-                            try:               
-                                ## Extract snr text from image
-                                snr_value = NOS_API.fix_snr_power_dcr7151(NOS_API.replace_letter_o_with_number_0(TEST_CREATION_API.OCR_recognize_text("signal_value", macro_snr, "[OCR_FILTER]", "Signal_Value")))  ## POWER text
+                            try:
+                                #Get Current Slot
+                                testSlot = int(NOS_API.get_test_place_name()[3:])
+                                #Make OCR with different OCR Filter on Rack 7 due to different image from Grabbers 4K
+                                if testSlot > 70:    
+                                    ## Extract snr text from image
+                                    snr_value = NOS_API.fix_snr_power_dcr7151(NOS_API.replace_letter_o_with_number_0(TEST_CREATION_API.OCR_recognize_text("signal_value", macro_snr, "[AUTODIAG_FILTER]", "Signal_Value")))  ## POWER text           
+                                else:
+                                    snr_value = NOS_API.fix_snr_power_dcr7151(NOS_API.replace_letter_o_with_number_0(TEST_CREATION_API.OCR_recognize_text("signal_value", macro_snr, "[OCR_FILTER]", "Signal_Value")))  ## POWER text
                                 TEST_CREATION_API.write_log_to_file("Snr value: " + snr_value)
                                 NOS_API.update_test_slot_comment("Snr value: " + snr_value)
                             
@@ -3178,9 +3138,16 @@ def runTest():
                                 if not(NOS_API.is_signal_present_on_video_source()):
                                     time.sleep(5)
                                 if (NOS_API.grab_picture("signal_value")):
-                                    try:          
-                                        ## Extract snr text from image
-                                        snr_value = NOS_API.fix_snr_power_dcr7151(NOS_API.replace_letter_o_with_number_0(TEST_CREATION_API.OCR_recognize_text("signal_value", macro_snr, "[OCR_FILTER]", "Signal_Value_2")))  ## POWER text
+                                    try:
+                                        #Get Current Slot
+                                        testSlot = int(NOS_API.get_test_place_name()[3:])
+                                        #Make OCR with different OCR Filter on Rack 7 due to different image from Grabbers 4K
+                                        if testSlot > 70:    
+                                            ## Extract snr text from image
+                                            snr_value = NOS_API.fix_snr_power_dcr7151(NOS_API.replace_letter_o_with_number_0(TEST_CREATION_API.OCR_recognize_text("signal_value", macro_snr, "[AUTODIAG_FILTER]", "Signal_Value")))  ## POWER text           
+                                        else:          
+                                            ## Extract snr text from image
+                                            snr_value = NOS_API.fix_snr_power_dcr7151(NOS_API.replace_letter_o_with_number_0(TEST_CREATION_API.OCR_recognize_text("signal_value", macro_snr, "[OCR_FILTER]", "Signal_Value_2")))  ## POWER text
                                         TEST_CREATION_API.write_log_to_file("Snr value: " + snr_value)
                                         NOS_API.update_test_slot_comment("Snr value: " + snr_value)
                                     
@@ -3234,7 +3201,7 @@ def runTest():
                                     return
                             try:
                                 ## Extract ber text from image
-                                ber_value = TEST_CREATION_API.OCR_recognize_text("signal_value", macro_ber, "[OCR_FILTER]")
+                                ber_value = TEST_CREATION_API.OCR_recognize_text("signal_value", macro_ber, "[OCR_FILTER]", "BER")
                                 ber_value = NOS_API.fix_ber(ber_value)
                                 TEST_CREATION_API.write_log_to_file("BER value: " + ber_value)
                                 NOS_API.update_test_slot_comment("BER value: " + ber_value)
@@ -3248,23 +3215,27 @@ def runTest():
                             if (NOS_API.test_cases_results_info.channel_boot_up_state):
                                 if(Dict):
                                     try:
-                                        frequencia = TEST_CREATION_API.OCR_recognize_text("signal_value", "[FREQUENCIA_DICT]", "[OCR_FILTER]")
+                                        frequencia = TEST_CREATION_API.OCR_recognize_text("signal_value", "[FREQUENCIA_DICT]", "[OCR_FILTER]", "Freq")
                                         NOS_API.test_cases_results_info.freq = str(frequencia)
-                                        modulation = TEST_CREATION_API.OCR_recognize_text("signal_value", "[MODULATION_DICT]", "[OCR_FILTER]")
+                                        modulation = TEST_CREATION_API.OCR_recognize_text("signal_value", "[MODULATION_DICT]", "[OCR_FILTER]", "Modu")
                                         NOS_API.test_cases_results_info.modulation = str(modulation)
                                         NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
                                         NOS_API.update_test_slot_comment("Modulation: " + modulation)
+                                        TEST_CREATION_API.write_log_to_file("Frequency value: " + frequencia)
+                                        TEST_CREATION_API.write_log_to_file("Modulation value: " + modulation)
                                     except Exception as error:
                                         ## Set test result to INCONCLUSIVE
                                         TEST_CREATION_API.write_log_to_file(str(error))
                                 else:
                                     try:
-                                        frequencia = TEST_CREATION_API.OCR_recognize_text("signal_value", "[FREQUENCIA]", "[OCR_FILTER]")
+                                        frequencia = TEST_CREATION_API.OCR_recognize_text("signal_value", "[FREQUENCIA]", "[OCR_FILTER]", "Freq")
                                         NOS_API.test_cases_results_info.freq = str(frequencia)
-                                        modulation = TEST_CREATION_API.OCR_recognize_text("signal_value", "[MODULATION]", "[OCR_FILTER]")
+                                        modulation = TEST_CREATION_API.OCR_recognize_text("signal_value", "[MODULATION]", "[OCR_FILTER]", "Modu")
                                         NOS_API.test_cases_results_info.modulation = str(modulation)
                                         NOS_API.update_test_slot_comment("Frequencia: " + frequencia)
                                         NOS_API.update_test_slot_comment("Modulation: " + modulation)
+                                        TEST_CREATION_API.write_log_to_file("Frequency value: " + frequencia)
+                                        TEST_CREATION_API.write_log_to_file("Modulation value: " + modulation)
                                     except Exception as error:
                                         ## Set test result to INCONCLUSIVE
                                         TEST_CREATION_API.write_log_to_file(str(error))
@@ -4181,7 +4152,7 @@ def runTest():
                     TEST_CREATION_API.send_ir_rc_command("[OK]")
                     
                     #MAC_SCREEN
-                    result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1", "Mac_Screen_Dict_ref"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN_DICT]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres])
+                    result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1", "mac_screen_ref2", "Mac_Screen_Dict_ref"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN_DICT]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres])
                     if(result == -2):
                         TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -4231,7 +4202,7 @@ def runTest():
                         TEST_CREATION_API.send_ir_rc_command("[NAVIGATE_MODEM_DOCSIS]")
                         TEST_CREATION_API.send_ir_rc_command("[OK]")
                         
-                        result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1", "Mac_Screen_Dict_ref"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN_DICT]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres])
+                        result = NOS_API.wait_for_multiple_pictures(["mac_screen_ref", "mac_screen_ref1", "mac_screen_ref2", "Mac_Screen_Dict_ref"], 10, ["[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN]", "[MAC_SCREEN_DICT]"], [NOS_API.thres, NOS_API.thres, NOS_API.thres, NOS_API.thres])
                         if(result == -2):
                             TEST_CREATION_API.write_log_to_file("STB lost Signal.Possible Reboot.")
                             NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.reboot_error_code \
@@ -6210,6 +6181,11 @@ def runTest():
                                         else:
                                             NOS_API.set_error_message("Video HDMI") 
                                         break
+                                    
+                                    TEST_CREATION_API.send_ir_rc_command("[CH_1]")
+                                    time.sleep(2)
+                                    TEST_CREATION_API.send_ir_rc_command("[EXIT]")
+                                    time.sleep(1)
                                     i = i + 1
                                 if (i >= 3):  
                                     TEST_CREATION_API.write_log_to_file("Video with RT-RK pattern is not reproduced correctly on HDMI 720p.")
@@ -6763,10 +6739,14 @@ def runTest():
                                             ## Checks if STB did upgrade
                                             if NOS_API.test_cases_results_info.DidUpgrade == 1:
                                                 ## Set variable to 2 (Did Upgrade and Pass on Docsis Test after fails on first try)
-                                                NOS_API.test_cases_results_info.DidUpgrade == 2
+                                                NOS_API.test_cases_results_info.DidUpgrade = 2
+                                                error_codes = ""
+                                                error_messages = ""  
                                             else:
                                                 ## Set variable to 2 (Didn't Upgrade and Pass on Docsis Test after fails on first try)
-                                                NOS_API.test_cases_results_info.DidUpgrade == 3
+                                                NOS_API.test_cases_results_info.DidUpgrade = 3
+                                                error_codes = ""
+                                                error_messages = ""  
                                             break
                                         else:
                                             num_tries += 1
@@ -6968,10 +6948,12 @@ def runTest():
                                         video_result_2 = NOS_API.compare_pictures("Factory_Reset_ref1", "Factory_Reset", "[Factory_Check]")
                                         video_result_3 = NOS_API.compare_pictures("Factory_Reset_Dict_ref", "Factory_Reset", "[Factory_Check]")
                                         video_result_4 = NOS_API.compare_pictures("Factory_Reset_Black_Dict_ref", "Factory_Reset", "[Factory_Check]")
+                                        video_result_5 = NOS_API.compare_pictures("Factory_Reset_Dict_ref1", "Factory_Reset", "[Factory_Check]")
+                                        video_result_6 = NOS_API.compare_pictures("Factory_Reset_Dict_ref2", "Factory_Reset", "[Factory_Check]")
   
                                         # result = NOS_API.wait_for_multiple_pictures(["menu_720_ref", "menu_black_720_ref"], 25, ["[RESUMO]", "[RESUMO]"], [70, 70])
                                         # if(result == -1) :
-                                        if not(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_4 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                        if not(video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_4 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_5 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_6 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                             time.sleep(20)
                                             TEST_CREATION_API.send_ir_rc_command("[EXIT_ZON_BOX]")
                                             time.sleep(2)
@@ -7024,8 +7006,10 @@ def runTest():
                                             video_result_4 = NOS_API.compare_pictures("Factory_Reset_ref1", "Factory_Reset_1", "[Factory_Check]")
                                             video_result_5 = NOS_API.compare_pictures("Factory_Reset_Dict_ref", "Factory_Reset_1", "[Factory_Check]")
                                             video_result_6 = NOS_API.compare_pictures("Factory_Reset_Black_Dict_ref", "Factory_Reset_1", "[Factory_Check]")
+                                            video_result_7 = NOS_API.compare_pictures("Factory_Reset_Dict_ref1", "Factory_Reset_1", "[Factory_Check]")
+                                            video_result_8 = NOS_API.compare_pictures("Factory_Reset_Dict_ref2", "Factory_Reset_1", "[Factory_Check]")
                                             
-                                            if not(video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_4 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_5 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_6 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                            if not(video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_3 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_4 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_5 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_6 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_7 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_8 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                                 TEST_CREATION_API.write_log_to_file("Navigation to Factory Reset screen failed")
                                                 NOS_API.set_error_message("Navegação")
                                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.navigation_error_code \
@@ -7337,13 +7321,9 @@ def stb_boot():
                     signal_detected_on_hdmi = True
                     signal_detected_on_cvbs = True
                     if not (NOS_API.grab_picture("HDMI_Image")):
-                        TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                            + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                        NOS_API.set_error_message("Video HDMI")
-                        error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                        error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
-                        return False
+                        signal_detected_on_hdmi = False
+                        signal_detected_on_cvbs = False
+                        continue
                     break
                 elif(result == 2):
                     TEST_CREATION_API.send_ir_rc_command("[CH_1]")
@@ -7411,13 +7391,9 @@ def stb_boot():
                 if(result == -1):
                     signal_detected_on_hdmi = True
                     if not (NOS_API.grab_picture("HDMI_Image")):
-                        TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
-                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
-                                                            + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
-                        NOS_API.set_error_message("Video HDMI")
-                        error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
-                        error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
-                        return False
+                        signal_detected_on_hdmi = False
+                        signal_detected_on_cvbs = False
+                        continue
                 elif((result == 2 or result == 3) and signal_detected_on_cvbs == True):
                     counter_black = counter_black + 1  
                     time.sleep(10)
@@ -7477,17 +7453,17 @@ def stb_boot():
             if (NOS_API.is_signal_present_on_video_source()):                        
             
                 compare_result = NOS_API.wait_for_multiple_pictures(
-                                                    ["Block_Image_ref", "sw_upgrade_loop_3_ref", "sw_upgrade_loop_3_eng_ref", "sw_update_loop_1_720p", "sw_update_loop_1_1080p", "sw_update_loop_2_720p", "sw_update_loop_2_720p_SD", "UMA_Inst_ref", "SW_UMA_error_ref", "UMA_No_Ch_ref", "UMA_Boot_720_ref", "Color_Channel_ref", "Old_Sw_Message_ref", "Inst_Nagra_ref", "Inst_Nagra_Eng_ref", "Old_Sw_Channel_ref", "Old_Shiftted_Inst_Error_ref", "No_Signal_Nagra_ref", "Old_Shiffted_Channel_ref", "Old_Shiftted_Installation_ref", "Old_SW_Shiftted_ref", "Old_SW_Shiftted_signal_ref", "Old_SW_Shiftted_Eng_ref", "sw_update_error_720p", "sw_update_error1_720p", "sw_update_error2_720p", "Message_Error_No_Channel_ref", "sd_service_720p_ref1", "sd_service_720p_ref2", "sd_service_720p_ref3", "HDMI_video_ref5", "sd_service_ref1", "sd_service_ref2", "sd_service_ref3", "sd_service_ref4", "hd_channel_ref", "hd_channel_ref1", "no_signal_channel_mode_ref", "no_signal_channel_mode_2_ref", "no_signal_channel_mode_720_ref", "no_signal_channel_mode_2_720_ref", "error_message_1080_ref", "menu_576_ref", "menu_720_ref", "menu_1080_ref", "No_Channel_1", "installation_boot_up_ref", "installation_boot_up_ref1", "language_installation_mode_ref", "installation_text_installation_mode_ref", "english_installation", "english_termos", "english_language_installation_ref", "installation_boot_up_ref_old", "installation_boot_up_ref_old_1", "Inst_Success_ref", "installation_boot_up_ref_old_2"],
+                                                    ["Block_Image_ref", "sw_upgrade_loop_3_ref", "sw_upgrade_loop_3_eng_ref", "sw_update_loop_1_720p", "sw_update_loop_1_1080p", "sw_update_loop_2_720p", "sw_update_loop_2_720p_SD", "FTI_UMA_1080_ref", "UMA_Inst_ref", "SW_UMA_error_ref", "SW_UMA_error_720_ref", "UMA_No_Ch_ref", "UMA_Boot_720_ref", "UMA_Boot_1080_ref", "Color_Channel_ref", "Old_Sw_Message_ref", "Inst_Nagra_ref", "Inst_Nagra_Eng_ref", "Old_Sw_Channel_ref", "Old_Shiftted_Inst_Error_ref", "No_Signal_Nagra_ref", "Old_Shiffted_Channel_ref", "Old_Shiftted_Installation_ref", "Old_SW_Shiftted_ref", "Old_SW_Shiftted_signal_ref", "Old_SW_Shiftted_Eng_ref", "sw_update_error_720p", "sw_update_error1_720p", "sw_update_error2_720p", "Message_Error_No_Channel_ref", "sd_service_720p_ref1", "sd_service_720p_ref2", "sd_service_720p_ref3", "HDMI_video_ref5", "sd_service_ref1", "sd_service_ref2", "sd_service_ref3", "sd_service_ref4", "hd_channel_ref", "hd_channel_ref1", "no_signal_channel_mode_ref", "no_signal_channel_mode_2_ref", "no_signal_channel_mode_720_ref", "no_signal_channel_mode_720_ref", "no_signal_channel_mode_2_720_ref", "error_message_1080_ref", "error_message_1080_ref", "menu_576_ref", "menu_720_ref", "menu_1080_ref", "No_Channel_1", "No_Channel_ref", "installation_boot_up_ref", "installation_boot_up_ref1", "language_installation_mode_ref", "installation_text_installation_mode_ref", "english_installation", "english_termos", "english_language_installation_ref", "installation_boot_up_ref_old", "installation_boot_up_ref_old_1", "Inst_Success_ref", "installation_boot_up_ref_old_2"],
                                                     delta_check,
-                                                    ["[FULL_SCREEN]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_1_720p]", "[SW_UPDATE_LOOP_1_1080p]", "[SW_UPDATE_LOOP_720p]", "[SW_UPDATE_LOOP_720p]", "[UMA_Inst_1080]", "[SW_UMA_ERROR]", "[UMA_No_Ch_1080]", "[UMA_Boot_720]", "[Uma_Sw_Channel]", "[Old_Sw_Message]", "[Inst_Nagra_720]", "[Inst_Nagra_720]", "[HALF_SCREEN_SD_CH_1080p]", "[Old_Shiftted_Inst_Error]", "[No_Signal_Nagra]", "[Old_Shiftted_Channel]", "[Old_Shiftted_Installation]", "[Old_SW_Shiftted_ref]", "[Old_SW_Shiftted_Signal_ref]", "[Old_SW_Shiftted_ref]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p]", "[Message_Error_No_Channel]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_HD]", "[HALF_SCREEN_HD]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE]", "[MENU_576]", "[MENU_720]", "[MENU_1080]", "[No_Channel_1]", "[FTI_AFTER_SW_UPGRADE]", "[FTI_AFTER_SW_UPGRADE]", "[LANGUAGE_INSTALLATION_MODE]", "[INSTALLATION_TEXT_FTI]", "[INSTALLATION_ENGLISH]", "[ENGLISH_TERMOS]", "[ENGLISH_INSTALLATION_LANGUAGE]", "[FTI_AFTER_SW_UPGRADE_OLD]", "[FTI_AFTER_SW_UPGRADE_OLD_1]", "[Inst_Success]", "[FTI_AFTER_SW_UPGRADE]"],
-                                                    [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 30, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80])                       
+                                                    ["[FULL_SCREEN]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_3]", "[SW_UPDATE_LOOP_1_720p]", "[SW_UPDATE_LOOP_1_1080p]", "[SW_UPDATE_LOOP_720p]", "[SW_UPDATE_LOOP_720p]", "[FTI_UMA_1080]", "[UMA_Inst_1080]", "[SW_UMA_ERROR]", "[SW_UMA_ERROR_720]", "[UMA_No_Ch_1080]", "[UMA_Boot_720]", "[UMA_Boot_1080]", "[Uma_Sw_Channel]", "[Old_Sw_Message]", "[Inst_Nagra_720]", "[Inst_Nagra_720]", "[HALF_SCREEN_SD_CH_1080p]", "[Old_Shiftted_Inst_Error]", "[No_Signal_Nagra]", "[Old_Shiftted_Channel]", "[Old_Shiftted_Installation]", "[Old_SW_Shiftted_ref]", "[Old_SW_Shiftted_Signal_ref]", "[Old_SW_Shiftted_ref]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p]", "[SW_UPDATE_ERROR_720p_ENG]", "[Message_Error_No_Channel]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_SD_CH_1080p]", "[HALF_SCREEN_HD]", "[HALF_SCREEN_HD]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[Channel_Error_Message_720]", "[NO_SIGNAL_CHANNEL_MODE_720p]", "[NO_SIGNAL_CHANNEL_MODE]", "[Channel_Error_Message_1080]", "[MENU_576]", "[MENU_720]", "[MENU_1080]", "[No_Channel_1]", "[No_Channel_720]", "[FTI_AFTER_SW_UPGRADE]", "[FTI_AFTER_SW_UPGRADE]", "[LANGUAGE_INSTALLATION_MODE]", "[INSTALLATION_TEXT_FTI]", "[INSTALLATION_ENGLISH]", "[ENGLISH_TERMOS]", "[ENGLISH_INSTALLATION_LANGUAGE]", "[FTI_AFTER_SW_UPGRADE_OLD]", "[FTI_AFTER_SW_UPGRADE_OLD_1]", "[Inst_Success]", "[FTI_AFTER_SW_UPGRADE]"],
+                                                    [80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 30, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80])                       
 
-                if(compare_result == 1 or compare_result == 2 or compare_result == 3 or compare_result == 4 or compare_result >= 46):
+                if(compare_result == 1 or compare_result == 2 or compare_result >= 52):
                     NOS_API.test_cases_results_info.channel_boot_up_state = False
                     time.sleep(2)
                     Software_Upgrade_TestCase = True
                     return True
-                elif(compare_result > 6 and compare_result < 26):   
+                elif(compare_result > 6 and compare_result < 29):   
                     TEST_CREATION_API.write_log_to_file("Doesn't upgrade")
 
                     NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.upgrade_nok_error_code \
@@ -7497,7 +7473,7 @@ def stb_boot():
                     error_messages = NOS_API.test_cases_results_info.upgrade_nok_error_message                               
                     test_result = "FAIL"
                     return False
-                elif(compare_result == 5 or compare_result == 6 or compare_result >= 26 and compare_result < 46):
+                elif(compare_result == 3 or compare_result == 4 or compare_result == 5 or compare_result == 6 or compare_result >= 29 and compare_result < 52):
                     NOS_API.test_cases_results_info.channel_boot_up_state = True
                     
                     result = NOS_API.wait_for_multiple_pictures(
