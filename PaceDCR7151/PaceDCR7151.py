@@ -1939,7 +1939,7 @@ def runTest():
                                     
                                     return
                             
-                            if ((video_height == "1080" and video_result_1 >= NOS_API.thres_3) or (video_height == "720" and video_result_1 >= NOS_API.thres_3) or (video_height == "1080" and video_result_2 >= NOS_API.thres_3) or (video_height == "720" and video_result_2 >= NOS_API.thres_3) or (video_height == "1080" and video_result_3 >= NOS_API.thres_3)):
+                            if ((video_height == "1080" and video_result_1 >= NOS_API.thres_2) or (video_height == "720" and video_result_1 >= NOS_API.thres_3) or (video_height == "1080" and video_result_2 >= NOS_API.thres_3) or (video_height == "720" and video_result_2 >= NOS_API.thres_3) or (video_height == "1080" and video_result_3 >= NOS_API.thres_3)):
                                 if (upgrade == 0 and NOS_API.Upgrade_State == 0):
                                     upgrade = upgrade + 1
                                     continue
